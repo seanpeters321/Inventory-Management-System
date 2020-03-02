@@ -1,0 +1,87 @@
+
+.root {
+    -fx-background-color: #FFFFFF;
+    -fx-font-family: Roboto;
+}
+/*
+Base Styles
+ */
+
+/*
+ * Labels	
+ */
+
+.label-login {
+    -fx-text-fill: #515A5A;
+    -fx-text-size: 20pt;
+    -fx-font-family: Roboto;
+}
+
+.label-login-alert {
+    -fx-text-fill: #B20020;
+    -fx-text-size: 10pt;
+    -fx-font-family: Roboto;
+}
+
+/*
+ * Text Fields
+ */
+.text-field{
+    -jfx-unfocused-color: rgba(109, 100, 105, 0.88);
+}
+/*
+ * Buttons
+ */
+.button {
+    -fx-background-color: #909090,
+    #FFFFFF;
+    -fx-background-radius: 4;
+    -fx-background-insets: 0,1,1;
+    -fx-font-family: Roboto;
+    -jfx-button-type: RAISED;
+}
+
+.button:pressed {
+    -fx-background-color: #445463;
+    -fx-text-fill: white;
+}
+
+.button:hover {
+    -fx-background-color: #909090,
+    #9fafc0;
+    -fx-text-fill: white;
+}
+
+.button:hover:pressed {
+    -fx-background-color: #445463;
+    -fx-text-fill: white;
+}
+/*
+Table View
+ */
+.table-view {
+    -fx-background-color: transparent;
+    -fx-border-color: #515A5A;
+}
+
+/*
+Menu/Menu Bar
+ */
+
+.menu-bar {
+    -fx-background-color: #99A3A4;
+}
+
+.jfx-hamburger-icon{
+    -fx-spacing: 5;
+    -fx-cursor: hand;
+}
+
+.jfx-hamburger-icon StackPane{
+    -fx-pref-width: 40px;
+    -fx-pref-height: 7px;
+    -fx-background-color: #D63333;
+    -fx-background-radius: 5px;
+}
+
+   
