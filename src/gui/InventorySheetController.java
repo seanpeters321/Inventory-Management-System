@@ -83,7 +83,6 @@ public class InventorySheetController implements Initializable {
         try {
             tableView.setItems(getStock());
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
