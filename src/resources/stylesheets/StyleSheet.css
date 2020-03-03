@@ -4,9 +4,40 @@
     -fx-font-family: Roboto;
 }
 /*
+Colors
+ */
+.main-background{
+    -fx-background-color: #FFFFFF;
+}
+.primary-color{
+    -fx-background-color: #708090;
+}
+.primary-color-dark{
+    -fx-background-color: #445463;
+}
+.primary-color-light{
+    -fx-background-color: #9fafc0;
+}
+
+.secondary-color{
+    -fx-background-color: #B87333;
+}
+.secondary-color-dark{
+    -fx-background-color: #844703;
+}
+.secondary-color-light{
+    -fx-background-color: #eea260;
+}
+
+
+
+/*
 Base Styles
  */
-
+.big-label-text{
+    -fx-font-weight: light;
+    -fx-font-size: 24pt;
+}
 /*
  * Labels	
  */
