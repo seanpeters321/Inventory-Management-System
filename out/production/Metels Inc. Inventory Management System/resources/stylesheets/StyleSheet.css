@@ -4,9 +4,40 @@
     -fx-font-family: Roboto;
 }
 /*
+Colors
+ */
+.main-background{
+    -fx-background-color: #FFFFFF;
+}
+.primary-color{
+    -fx-background-color: #708090;
+}
+.primary-color-dark{
+    -fx-background-color: #445463;
+}
+.primary-color-light{
+    -fx-background-color: #9fafc0;
+}
+
+.secondary-color{
+    -fx-background-color: #B87333;
+}
+.secondary-color-dark{
+    -fx-background-color: #844703;
+}
+.secondary-color-light{
+    -fx-background-color: #eea260;
+}
+
+
+
+/*
 Base Styles
  */
-
+.big-label-text{
+    -fx-font-size: 24pt;
+    -fx-font-family: "Roboto Light";
+}
 /*
  * Labels	
  */
@@ -15,6 +46,10 @@ Base Styles
     -fx-text-fill: #515A5A;
     -fx-text-size: 20pt;
     -fx-font-family: Roboto;
+}
+.logo-font-big{
+    -fx-font-size: 20pt;
+    -fx-font-family: Bahnschrift;
 }
 
 .label-login-alert {

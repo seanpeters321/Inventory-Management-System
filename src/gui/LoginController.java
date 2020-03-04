@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,12 +17,14 @@ import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import main.FileEditor;
 
 
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
+import java.security.Key;
 import java.util.ResourceBundle;
 
 /**
@@ -78,7 +81,17 @@ public class LoginController implements Initializable {
             window.setScene(npage);
             window.setFullScreen(true);
             window.show();
-        } else
+        } else {
+            //Fade in animation for the error text for 300ms
+            statusLabel.setOpacity(0);
             statusLabel.setText("Invalid Username and/or Password");
+            final Timeline tl = new Timeline();
+            KeyValue keyValue  = new KeyValue(statusLabel.opacityProperty(), 1, Interpolator.EASE_IN);
+            KeyFrame keyFrame = new KeyFrame(Duration.millis(300), keyValue);
+            tl.setCycleCount(1);
+            tl.setAutoReverse(true);
+            tl.getKeyFrames().addAll(keyFrame);
+            tl.play();
+        }
     }
 }
