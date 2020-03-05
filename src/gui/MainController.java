@@ -1,5 +1,6 @@
 package gui;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXHamburger;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -22,7 +23,7 @@ import java.util.ResourceBundle;
  */
 public class MainController implements Initializable {
     @FXML
-    private JFXHamburger hamburger;
+    private JFXButton orderButton;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -53,6 +54,15 @@ public class MainController implements Initializable {
         Parent page = FXMLLoader.load(getClass().getResource("/gui/InventorySheet.fxml"));
         Scene npage = new Scene(page);
 
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(npage);
+        window.setFullScreen(true);
+        window.show();
+    }
+
+    public void goToOrderPage(ActionEvent event) throws IOException{
+        Parent page = FXMLLoader.load(getClass().getResource("/gui/OrderPage.fxml"));
+        Scene npage = new Scene(page);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(npage);
         window.setFullScreen(true);

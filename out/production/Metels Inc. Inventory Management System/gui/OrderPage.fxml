@@ -1,14 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="gui.OrderPageController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="main-background" stylesheets="@../resources/stylesheets/StyleSheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OrderPageController">
+   <children>
+      <AnchorPane prefHeight="400.0" prefWidth="400.0">
+         <children>
+            <JFXDatePicker fx:id="orderDate" defaultColor="#445463" layoutX="14.0" layoutY="14.0" prefHeight="28.0" prefWidth="200.0" promptText="Date of Order" AnchorPane.topAnchor="15.0" />
+            <JFXTextField fx:id="orderName" labelFloat="true" layoutX="14.0" layoutY="60.0" prefHeight="25.0" prefWidth="165.0" promptText="Customer Name" AnchorPane.topAnchor="60.0" />
+            <JFXTextField fx:id="orderID" labelFloat="true" layoutX="93.0" layoutY="105.0" prefHeight="25.0" prefWidth="88.0" promptText="Product ID" AnchorPane.topAnchor="105.0" />
+            <Label layoutX="260.0" layoutY="21.0" text="Select Items" />
+            <JFXComboBox fx:id="orderQty" labelFloat="true" layoutX="14.0" layoutY="105.0" promptText="Quantity" />
+            <JFXListView layoutX="14.0" layoutY="164.0" prefHeight="172.0" prefWidth="165.0" styleClass="primary-color-light" stylesheets="@../resources/stylesheets/StyleSheet.css" />
+            <JFXButton fx:id="orderConfirm" layoutX="47.0" layoutY="346.0" text="Confirm Order" />
+            <JFXButton fx:id="orderAdd" layoutX="14.0" layoutY="138.0" text="Add to Order" />
+            <DatePicker layoutX="157.0" layoutY="105.0" />
+         </children>
+      </AnchorPane>
+      <Label layoutX="464.0" layoutY="14.0" text="Order History" />
+      <JFXListView layoutX="400.0" layoutY="37.0" prefHeight="363.0" prefWidth="200.0" styleClass="primary-color-light">
+         <effect>
+            <DropShadow />
+         </effect>
+      </JFXListView>
+   </children>
 </AnchorPane>
