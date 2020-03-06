@@ -12,7 +12,7 @@ import java.io.IOException;
  * @author Sean Peters
  */
 public class Stock {
-    private SimpleStringProperty name, ID, length, diameter, width;
+    private SimpleStringProperty name, ID, length, diameter, width, type;
     private SimpleIntegerProperty quantity;
     private SimpleDoubleProperty price;
 
@@ -29,16 +29,18 @@ public class Stock {
         this.price = new SimpleDoubleProperty(price);
     }
 
-    public Stock(String name, String length, String diameter){
+    public Stock(String name, String length, String type, String diameter) {
         this.name = new SimpleStringProperty(name);
         this.length = new SimpleStringProperty(length);
         this.diameter = new SimpleStringProperty(diameter);
+        this.type = new SimpleStringProperty(type);
     }
 
-    public Stock(String name, String length, String diameter, String width){
+    public Stock(String name, String length, String diameter, String type, String width) {
         this.name = new SimpleStringProperty(name);
         this.length = new SimpleStringProperty(length);
         this.diameter = new SimpleStringProperty(diameter);
+        this.type = new SimpleStringProperty(type);
         this.width = new SimpleStringProperty(width);
     }
 
@@ -144,17 +146,49 @@ public class Stock {
      * Generates ID based off of metal type, length, width, and height.
      * Used to reference inventory.txt and get price of item and its quantity in stock.
      */
-    public void genID() {
-        String name, width, length, diamter, ID;
-        String nm = this.name.toString();
-        switch(nm){
+    public String genID() {
+        String name = this.name.toString();
+        String type = this.type.toString();
+        String length = this.length.toString();
+        String diameter = this.diameter.toString();
+        String width = this.width.toString();
+        String ID = null;
+
+        switch (name) {
             case "Aluminum":
-                ID = "01";
+                ID = "1";
+                break;
+            case "Bronze":
+                ID = "2";
+                break;
+            case "Copper":
+                ID = "3";
                 break;
             case "Steel":
-                ID = "02";
+                ID = "4";
+                break;
+            case "Stainless Steel":
+                ID = "5";
+                break;
+            case "Titanium":
+                ID = "6";
                 break;
         }
+
+        switch (type) {
+            case "Bar":
+                ID += "10";
+                break;
+            case "Sheet":
+                ID += "20";
+                break;
+            case "Block":
+                ID += "30";
+                break;
+        }
+
+        ID += length + diameter + width;
+        return ID;
     }
 
 

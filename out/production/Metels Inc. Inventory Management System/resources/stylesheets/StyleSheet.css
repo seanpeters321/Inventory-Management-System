@@ -91,6 +91,11 @@ Base Styles
     -fx-background-color: #445463;
     -fx-text-fill: white;
 }
+
+.back-button{
+    -fx-background-color: #FFFFFF;
+    -fx-shape: "resources/icons/svg/arrow-72-83543.svg";
+}
 /*
 Table View
  */
