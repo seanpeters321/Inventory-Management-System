@@ -29,7 +29,7 @@ public class MainController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
     /**
-     * Returns to the Login page
+     * Changes scene to Login.fxml
      *
      * @param event
      * @throws IOException
@@ -45,7 +45,7 @@ public class MainController implements Initializable {
     }
 
     /**
-     * Goes to Inventory Sheet
+     * Changes scene to InventorySheet.fxml
      *
      * @param event
      * @throws IOException
@@ -60,6 +60,11 @@ public class MainController implements Initializable {
         window.show();
     }
 
+    /**
+     * Changes scene to OrderPage.fxml
+     * @param event
+     * @throws IOException
+     */
     public void goToOrderPage(ActionEvent event) throws IOException{
         Parent page = FXMLLoader.load(getClass().getResource("/gui/OrderPage.fxml"));
         Scene npage = new Scene(page);
@@ -69,6 +74,10 @@ public class MainController implements Initializable {
         window.show();
     }
 
+    /**
+     * Close handler
+     * @param event
+     */
     public void closeHandler(ActionEvent event) {
         Platform.exit();
     }

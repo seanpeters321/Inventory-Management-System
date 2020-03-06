@@ -29,7 +29,7 @@ import java.util.Scanner;
  * @author Sean Peters
  */
 public class InventorySheetController implements Initializable {
-
+//FX:IDs
     @FXML
     private TableView<Stock> tableView;
     @FXML
@@ -42,7 +42,7 @@ public class InventorySheetController implements Initializable {
     private TableColumn<Stock, Double> priceColumn;
 
     /**
-     * Allows for the Name cell to be edited
+     * Allows for the Name cell to be edited (Not pushed to text document)
      *
      * @param edittedCell
      */
@@ -64,7 +64,7 @@ public class InventorySheetController implements Initializable {
     }
 
     /**
-     * Allows for the ID cell to be edited
+     * Allows for the ID cell to be edited (Not pushed to text document)
      *
      * @param edittedCell
      */
@@ -92,7 +92,7 @@ public class InventorySheetController implements Initializable {
     }
 
     /**
-     * Adds items to the Inventory List
+     * Grabs items from the inventory.txt file and converts them to be read and added to an ObservableList. This list in then implemented in the table view.
      *
      * @return Stock ObservableList
      * @throws IOException
@@ -127,9 +127,10 @@ public class InventorySheetController implements Initializable {
      * @throws IOException If Main.fxml cannot be found
      */
     public void goBack(ActionEvent event) throws IOException {
+        //grabs scene source
         Parent page = FXMLLoader.load(getClass().getResource("/gui/Main.fxml"));
         Scene npage = new Scene(page);
-
+        //grabs main stage object
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(npage);
         window.setFullScreen(true);
@@ -143,9 +144,10 @@ public class InventorySheetController implements Initializable {
      * @throws IOException If InventorySheet.fxml cannot be found
      */
     public void refresh(ActionEvent event) throws IOException {
+        //grabs scene source
         Parent page = FXMLLoader.load(getClass().getResource("/gui/InventorySheet.fxml"));
         Scene npage = new Scene(page);
-
+        //grabs stage object
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(npage);
         window.setFullScreen(true);

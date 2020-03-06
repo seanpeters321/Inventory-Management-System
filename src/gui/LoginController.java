@@ -52,7 +52,7 @@ public class LoginController implements Initializable {
         dropShadow.setHeight(5);
         dropShadow.setWidth(5);
         dropShadow.setRadius(5);
-        loginBtn.setEffect(dropShadow);
+       // loginBtn.setEffect(dropShadow);
     }
     /**
      * Checks if the given username and password match an existing user and logs
@@ -68,7 +68,7 @@ public class LoginController implements Initializable {
         user = txtUser.getText();
         pass = txtPass.getText();
         boolean match = file.userpassMatch(user, pass);
-
+        //compares the username and password and returns a boolean
         if (match) {
             statusLabel.setText("Login Success");
             GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
