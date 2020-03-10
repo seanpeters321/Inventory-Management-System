@@ -133,7 +133,7 @@ public class InventorySheetController implements Initializable {
         //grabs main stage object
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(npage);
-        window.setFullScreen(true);
+        window.setMaximized(true);
         window.show();
     }
 

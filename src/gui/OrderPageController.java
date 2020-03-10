@@ -7,6 +7,8 @@ import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.beans.Observable;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +25,7 @@ import main.Stock;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
@@ -125,9 +128,13 @@ public class OrderPageController implements Initializable {
      *
      * @param event
      */
-    public void orderConfirm(ActionEvent event) {
-        String date = orderDate.getAccessibleText();
-        String name = orderName.getText();
+    public void orderConfirm(ActionEvent event) throws IOException {
+        ObservableList<String> items;
+        FileWriter writer = new FileWriter("cart.txt");
+        items = order.getSelectionModel().getSelectedItems();
+        for(String item: items){
+            writer.write(item);
+        }
 
     }
 
@@ -138,7 +145,7 @@ public class OrderPageController implements Initializable {
         //grabs main stage object
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(npage);
-        window.setFullScreen(true);
+        window.setMaximized(true);
         window.show();
     }
 }

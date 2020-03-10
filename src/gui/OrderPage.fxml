@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" styleClass="main-background" stylesheets="@../resources/stylesheets/StyleSheet.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OrderPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" styleClass="main-background" stylesheets="@../resources/stylesheets/StyleSheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OrderPageController">
    <children>
       <AnchorPane prefHeight="1079.0" prefWidth="1132.0" scaleY="1.1">
          <children>
-            <Label layoutX="756.0" layoutY="38.0" styleClass="big-label-text" text="Select Items" />
-            <DatePicker fx:id="orderDate" layoutX="210.0" layoutY="65.0" promptText="Date of Order" scaleX="1.5" scaleY="1.5">
+            <Label layoutX="756.0" layoutY="47.0" styleClass="big-label-text" text="Select Items" />
+            <DatePicker fx:id="orderDate" layoutX="215.0" layoutY="78.0" promptText="Date of Order" scaleX="1.5" scaleY="1.5">
                <tooltip>
                   <Tooltip text="Date Order was Placed by Client" />
                </tooltip></DatePicker>
@@ -43,10 +50,11 @@
                </tooltip>
             </JFXComboBox>
             <JFXButton fx:id="orderAdd" layoutX="98.0" layoutY="341.0" onAction="#addToOrder" scaleX="1.5" scaleY="1.5" text="Add to Order" />
-            <JFXButton fx:id="orderConfirm" layoutX="130.0" layoutY="863.0" scaleX="1.5" scaleY="1.5" text="Confirm Order" />
+            <JFXButton fx:id="orderConfirm" layoutX="130.0" layoutY="863.0" onAction="#orderConfirm" scaleX="1.5" scaleY="1.5" text="Confirm Order" />
+            <Pane layoutX="76.0" layoutY="420.0" prefHeight="400.0" prefWidth="300.0" styleClass="primary-color-light" />
             <JFXListView fx:id="order" layoutX="126.0" layoutY="420.0" scaleX="1.5" styleClass="primary-color-light" stylesheets="@../resources/stylesheets/StyleSheet.css" />
             <Label fx:id="orderAlert" layoutX="321.0" layoutY="343.0" opacity="0.0" prefHeight="17.0" prefWidth="300.0" scaleX="1.5" scaleY="1.5" styleClass="label-login-alert" text="Label" />
-            <JFXButton fx:id="goBack" contentDisplay="CENTER" layoutX="36.0" layoutY="35.0" onAction="#goBack" prefHeight="47.0" prefWidth="90.0" text="Back" />
+            <JFXButton fx:id="goBack" contentDisplay="CENTER" layoutX="36.0" layoutY="61.0" onAction="#goBack" prefHeight="47.0" prefWidth="90.0" text="Back" />
          </children>
       </AnchorPane>
       <Label layoutX="1450.0" layoutY="44.0" styleClass="big-label-text" text="Order History">

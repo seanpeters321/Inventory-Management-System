@@ -79,7 +79,7 @@ public class LoginController implements Initializable {
 
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(npage);
-            window.setFullScreen(true);
+            window.setMaximized(true);
             window.show();
         } else {
             //Fade in animation for the error text for 300ms
