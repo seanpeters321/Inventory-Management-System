@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" styleClass="main-background" stylesheets="@../resources/stylesheets/StyleSheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OrderPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="main-background" stylesheets="@../resources/stylesheets/StyleSheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OrderPageController">
    <children>
       <AnchorPane prefHeight="1079.0" prefWidth="1132.0" scaleY="1.1">
          <children>
@@ -50,10 +50,10 @@
                </tooltip>
             </JFXComboBox>
             <JFXButton fx:id="orderAdd" layoutX="98.0" layoutY="341.0" onAction="#addToOrder" scaleX="1.5" scaleY="1.5" text="Add to Order" />
-            <JFXButton fx:id="orderConfirm" layoutX="130.0" layoutY="863.0" onAction="#orderConfirm" scaleX="1.5" scaleY="1.5" text="Confirm Order" />
-            <Pane layoutX="76.0" layoutY="420.0" prefHeight="400.0" prefWidth="300.0" styleClass="primary-color-light" />
-            <JFXListView fx:id="order" layoutX="126.0" layoutY="420.0" scaleX="1.5" styleClass="primary-color-light" stylesheets="@../resources/stylesheets/StyleSheet.css" />
-            <Label fx:id="orderAlert" layoutX="321.0" layoutY="343.0" opacity="0.0" prefHeight="17.0" prefWidth="300.0" scaleX="1.5" scaleY="1.5" styleClass="label-login-alert" text="Label" />
+            <JFXButton fx:id="orderConfirm" layoutX="312.0" layoutY="341.0" onAction="#orderConfirm" scaleX="1.5" scaleY="1.5" text="Confirm Order" />
+            <Pane layoutX="82.0" layoutY="383.0" prefHeight="400.0" prefWidth="300.0" styleClass="primary-color-light" />
+            <JFXListView fx:id="order" layoutX="132.0" layoutY="383.0" scaleX="1.5" styleClass="primary-color-light" stylesheets="@../resources/stylesheets/StyleSheet.css" />
+            <Label fx:id="orderAlert" layoutX="321.0" layoutY="311.0" opacity="0.0" prefHeight="17.0" prefWidth="300.0" scaleX="1.5" scaleY="1.5" styleClass="label-login-alert" text="Label" />
             <JFXButton fx:id="goBack" contentDisplay="CENTER" layoutX="36.0" layoutY="61.0" onAction="#goBack" prefHeight="47.0" prefWidth="90.0" text="Back" />
          </children>
       </AnchorPane>
@@ -61,11 +61,11 @@
          <font>
             <Font size="64.0" />
          </font></Label>
-      <JFXListView layoutX="1197.0" layoutY="98.0" prefHeight="970.0" prefWidth="671.0" styleClass="primary-color-light">
+      <Separator layoutX="1080.0" layoutY="-3.0" orientation="VERTICAL" prefHeight="1084.0" prefWidth="114.0" />
+      <JFXListView layoutX="1285.0" layoutY="31.0" prefHeight="970.0" prefWidth="671.0" styleClass="primary-color-light">
          <effect>
             <DropShadow />
          </effect>
       </JFXListView>
-      <Separator layoutX="1080.0" layoutY="-3.0" orientation="VERTICAL" prefHeight="1084.0" prefWidth="114.0" />
    </children>
 </AnchorPane>

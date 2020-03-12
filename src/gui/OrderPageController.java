@@ -23,10 +23,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import main.Stock;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -129,12 +126,23 @@ public class OrderPageController implements Initializable {
      * @param event
      */
     public void orderConfirm(ActionEvent event) throws IOException {
+        String verify, putData;
         ObservableList<String> items;
-        FileWriter writer = new FileWriter("cart.txt");
-        items = order.getSelectionModel().getSelectedItems();
+        String name = "Invoice " + orderName.getText();
+        File file = new File("./src/resources/txt/inventory.txt");
+        //FileWriter
+        //BufferedWriter inventory = new BufferedWriter()
+        BufferedWriter writer = new BufferedWriter(new FileWriter(name));
+
+        items = order.getItems();
+
         for(String item: items){
             writer.write(item);
+            writer.newLine();
         }
+        writer.close();
+
+        System.out.println("File was Written");
 
     }
 

@@ -70,7 +70,8 @@ public class MainController implements Initializable {
         Scene npage = new Scene(page);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(npage);
-        window.setMaximized(true);
+        window.setFullScreen(true);
+        //window.setMaximized(true);
         window.show();
     }
 
