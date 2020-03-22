@@ -12,7 +12,7 @@ import java.io.IOException;
  * @author Sean Peters
  */
 public class Stock {
-    private SimpleStringProperty name, ID, length, diameter, width, type;
+    private SimpleStringProperty name, ID, length, diameter, width, type, dimensions, item;
     private SimpleIntegerProperty quantity;
     private SimpleDoubleProperty price;
 
@@ -22,11 +22,21 @@ public class Stock {
      * @param quantity
      * @param price
      */
-    public Stock(String ID, String name, int quantity, double price) {
+    public Stock(String ID, String name, int quantity, double price, String dimensions, String type) {
         this.name = new SimpleStringProperty(name);
         this.ID = new SimpleStringProperty(ID);
         this.quantity = new SimpleIntegerProperty(quantity);
         this.price = new SimpleDoubleProperty(price);
+        this.dimensions = new SimpleStringProperty(dimensions);
+        this.type = new SimpleStringProperty(type);
+    }
+
+    public Stock(String ID, String item, int quantity, double price, String dimensions) {
+        this.item = new SimpleStringProperty(item);
+        this.ID = new SimpleStringProperty(ID);
+        this.quantity = new SimpleIntegerProperty(quantity);
+        this.price = new SimpleDoubleProperty(price);
+        this.dimensions = new SimpleStringProperty(dimensions);
     }
 
     public Stock(String name, String length, String type, String diameter) {
@@ -54,8 +64,8 @@ public class Stock {
      * @return
      * @throws IOException
      */
-    public Stock toStock(String id, String name, int quantity, double cost) throws IOException {
-        Stock stock = new Stock(id, name, quantity, cost);
+    public Stock toStock(String id, String name, int quantity, double cost, String dimensions, String type) throws IOException {
+        Stock stock = new Stock(id, name, quantity, cost, dimensions, type);
         return stock;
     }
 
@@ -138,9 +148,20 @@ public class Stock {
      *
      * @param price
      */
-    public void setPrice(Double price) {
-        this.price = new SimpleDoubleProperty(price);
-    }
+    public void setPrice(Double price) {this.price = new SimpleDoubleProperty(price);}
+
+    public String getDimensions(){return dimensions.get();}
+
+    public void setDimensions(String dimensions){this.dimensions = new SimpleStringProperty(dimensions);}
+
+    public String getType(){return type.get();}
+
+    public void setType(String type){this.type = new SimpleStringProperty(type);}
+
+    public String getItem(){return item.get();}
+
+    public void setItem(String item){this.item = new SimpleStringProperty(item);}
+
 
     /**
      * Generates ID based off of metal type, length, width, and height.

@@ -71,11 +71,8 @@ public class LoginController implements Initializable {
         //compares the username and password and returns a boolean
         if (match) {
             statusLabel.setText("Login Success");
-            GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-            int width = gd.getDisplayMode().getWidth();
-            int height = gd.getDisplayMode().getHeight();
             Parent page = FXMLLoader.load(getClass().getResource("/gui/Main.fxml"));
-            Scene npage = new Scene(page, width, height);
+            Scene npage = new Scene(page);
 
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(npage);

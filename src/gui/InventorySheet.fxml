@@ -22,8 +22,9 @@
             <columns>
                 <TableColumn fx:id="idColumn" prefWidth="100.0" text="ID" />
                 <TableColumn fx:id="nameColumn" prefWidth="100.0" text="Name" />
-                <TableColumn fx:id="priceColumn" prefWidth="100.0" text="Price" />
                 <TableColumn fx:id="quantityColumn" prefWidth="89.0" text="Quantity" />
+            <TableColumn fx:id="dimColumn" prefWidth="75.0" text="Dimensions" />
+                <TableColumn fx:id="priceColumn" prefWidth="100.0" text="Price" />
             </columns>
          <cursor>
             <Cursor fx:constant="DEFAULT" />

@@ -1,6 +1,5 @@
 package gui;
 
-import javafx.application.Preloader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,6 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 import main.Stock;
+
 
 import java.io.*;
 import java.net.URL;
@@ -40,6 +40,8 @@ public class InventorySheetController implements Initializable {
     private TableColumn<Stock, Integer> quantityColumn;
     @FXML
     private TableColumn<Stock, Double> priceColumn;
+    @FXML
+    private TableColumn<Stock, String> dimColumn;
 
     /**
      * Allows for the Name cell to be edited (Not pushed to text document)
@@ -79,6 +81,7 @@ public class InventorySheetController implements Initializable {
         idColumn.setCellValueFactory(new PropertyValueFactory<Stock, String>("ID"));
         quantityColumn.setCellValueFactory(new PropertyValueFactory<Stock, Integer>("quantity"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<Stock, Double>("price"));
+        dimColumn.setCellValueFactory(new PropertyValueFactory<Stock, String>("dimensions"));
 
         try {
             tableView.setItems(getStock());
@@ -111,9 +114,12 @@ public class InventorySheetController implements Initializable {
 
             String resultID = output[0];
             String resultName = output[1];
-            int resultQnty = Integer.parseInt(output[2]);
-            double resultCost = Double.parseDouble(output[3]);
-            stck = new Stock(resultID, resultName, resultQnty, resultCost);
+            String resultType = output[2];
+            String resultDim = output[3];
+            String item = resultType + " " + resultName;
+            int resultQnty = Integer.parseInt(output[4]);
+            double resultCost = Double.parseDouble(output[5]);
+            stck = new Stock(resultID, item, resultQnty, resultCost, resultDim);
             stock.add(stck);
         }
         fr.close();
@@ -150,7 +156,6 @@ public class InventorySheetController implements Initializable {
         //grabs stage object
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(npage);
-        window.setFullScreen(true);
         window.show();
     }
 }

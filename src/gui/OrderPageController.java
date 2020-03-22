@@ -7,7 +7,6 @@ import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
-import javafx.beans.Observable;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,7 +23,6 @@ import javafx.util.Duration;
 import main.Stock;
 
 import java.io.*;
-import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -45,7 +43,7 @@ public class OrderPageController implements Initializable {
     @FXML
     private Label orderAlert;
     @FXML
-    private ListView order;
+    private ListView order, orderSelect;
 
     private Object NullPointerException;
 
@@ -60,6 +58,29 @@ public class OrderPageController implements Initializable {
         orderDiameter.getItems().addAll("0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9", "1.0");
         orderType.getItems().addAll("Bar", "Sheet", "Block");
         orderMetal.getItems().addAll("Aluminum", "Bronze", "Copper", "Steel", "Stainless Steel", "Titanium");
+
+        Scanner fr = null;
+        try {
+            fr = new Scanner(new FileReader("./src/resources/txt/inventory.txt"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        while (fr.hasNext()) {
+            String string;
+            Stock stck;
+            string = fr.next();
+            String[] output = string.split("-");
+
+            String resultID = output[0];
+            String resultName = output[1];
+            int resultQnty = Integer.parseInt(output[2]);
+            double resultCost = Double.parseDouble(output[3]);
+           // stck = new Stock(resultID, resultName, resultQnty, resultCost);
+            //String name = resultQnty + "| " + resultName + " " + name + " (" + length + "in x " + diameter + "in)";
+            //this.orderSelect.getItems().setAll(name);
+           // System.out.println(name);
+        }
+        fr.close();
     }
 
     /**
@@ -69,7 +90,7 @@ public class OrderPageController implements Initializable {
      */
     public void addToOrder(ActionEvent event) throws FileNotFoundException {
         try {
-                ArrayList < Stock > order = new ArrayList<Stock>();
+                ArrayList <Stock> order = new ArrayList<Stock>();
         String id, Name;
         String quantity = orderQty.getText();
         String length = orderLength.getSelectionModel().getSelectedItem().toString();
@@ -118,6 +139,12 @@ public class OrderPageController implements Initializable {
             tl.getKeyFrames().addAll(keyFrame);
             tl.play();
         }
+        orderQty.clear();
+        orderType.getSelectionModel().clearSelection();
+        orderMetal.getSelectionModel().clearSelection();
+        orderWidth.getSelectionModel().clearSelection();
+        orderLength.getSelectionModel().clearSelection();
+        orderDiameter.getSelectionModel().clearSelection();
     }
 
     /**
@@ -130,8 +157,6 @@ public class OrderPageController implements Initializable {
         ObservableList<String> items;
         String name = "Invoice " + orderName.getText();
         File file = new File("./src/resources/txt/inventory.txt");
-        //FileWriter
-        //BufferedWriter inventory = new BufferedWriter()
         BufferedWriter writer = new BufferedWriter(new FileWriter(name));
 
         items = order.getItems();
@@ -143,6 +168,10 @@ public class OrderPageController implements Initializable {
         writer.close();
 
         System.out.println("File was Written");
+
+        orderName.clear();
+        orderDate.getEditor().clear();
+        order.getItems().clear();
 
     }
 
