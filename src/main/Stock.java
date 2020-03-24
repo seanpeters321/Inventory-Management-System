@@ -16,30 +16,28 @@ public class Stock {
     private SimpleIntegerProperty quantity;
     private SimpleDoubleProperty price;
 
+
     /**
      * @param ID
      * @param name
      * @param quantity
      * @param price
      */
-    public Stock(String ID, String name, int quantity, double price, String dimensions, String type) {
+    public Stock(String ID, String name, int quantity, double price, String dimensions) {
         this.name = new SimpleStringProperty(name);
         this.ID = new SimpleStringProperty(ID);
         this.quantity = new SimpleIntegerProperty(quantity);
         this.price = new SimpleDoubleProperty(price);
         this.dimensions = new SimpleStringProperty(dimensions);
-        this.type = new SimpleStringProperty(type);
     }
-
-    public Stock(String ID, String item, int quantity, double price, String dimensions) {
-        this.item = new SimpleStringProperty(item);
+    public Stock(String ID, String name, int quantity, double price) {
+        this.name = new SimpleStringProperty(name);
         this.ID = new SimpleStringProperty(ID);
         this.quantity = new SimpleIntegerProperty(quantity);
         this.price = new SimpleDoubleProperty(price);
-        this.dimensions = new SimpleStringProperty(dimensions);
     }
 
-    public Stock(String name, String length, String type, String diameter) {
+    public Stock(String name, String length, String diameter, String type) {
         this.name = new SimpleStringProperty(name);
         this.length = new SimpleStringProperty(length);
         this.diameter = new SimpleStringProperty(diameter);
@@ -54,6 +52,78 @@ public class Stock {
         this.width = new SimpleStringProperty(width);
     }
 
+    public String getName() {
+        return name.get();
+    }
+
+    public SimpleStringProperty nameProperty() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name.set(name);
+    }
+
+    public String getID() {
+        return ID.get();
+    }
+
+    public SimpleStringProperty IDProperty() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID.set(ID);
+    }
+
+    public String getDimensions() {
+        return dimensions.get();
+    }
+
+    public SimpleStringProperty dimensionsProperty() {
+        return dimensions;
+    }
+
+    public void setDimensions(String dimensions) {
+        this.dimensions.set(dimensions);
+    }
+
+    public String getItem() {
+        return item.get();
+    }
+
+    public SimpleStringProperty itemProperty() {
+        return item;
+    }
+
+    public void setItem(String item) {
+        this.item.set(item);
+    }
+
+    public int getQuantity() {
+        return quantity.get();
+    }
+
+    public SimpleIntegerProperty quantityProperty() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity.set(quantity);
+    }
+
+    public double getPrice() {
+        return price.get();
+    }
+
+    public SimpleDoubleProperty priceProperty() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price.set(price);
+    }
+
     /**
      * Creates Stock object off of ID, name, quantity, and cost.
      *
@@ -65,7 +135,7 @@ public class Stock {
      * @throws IOException
      */
     public Stock toStock(String id, String name, int quantity, double cost, String dimensions, String type) throws IOException {
-        Stock stock = new Stock(id, name, quantity, cost, dimensions, type);
+        Stock stock = new Stock(id, name, quantity, cost, dimensions);
         return stock;
     }
 
@@ -80,87 +150,6 @@ public class Stock {
         return stock;
     }
 
-    /**
-     * Gets name.
-     *
-     * @return
-     */
-    public String getName() {
-        return name.get();
-    }
-
-    /**
-     * Sets name.
-     *
-     * @param name
-     */
-    public void setName(String name) {
-        this.name = new SimpleStringProperty(name);
-    }
-
-    /**
-     * Gets ID.
-     *
-     * @return
-     */
-    public String getID() {
-        return ID.get();
-    }
-
-    /**
-     * Sets ID.
-     *
-     * @param ID
-     */
-    public void setID(String ID) {
-        this.ID = new SimpleStringProperty(ID);
-    }
-
-    /**
-     * Gets quantity.
-     *
-     * @return
-     */
-    public int getQuantity() {
-        return quantity.get();
-    }
-
-    /**
-     * Sets quantity
-     *
-     * @param quantity
-     */
-    public void setQuantity(Integer quantity) {
-        this.quantity = new SimpleIntegerProperty(quantity);
-    }
-
-    /**
-     * Gets price.
-     *
-     * @return
-     */
-    public double getPrice() {
-        return price.get();
-    }
-
-    /**
-     * Sets price.
-     *
-     * @param price
-     */
-    public void setPrice(Double price) {this.price = new SimpleDoubleProperty(price);}
-
-    public String getDimensions(){return dimensions.get();}
-
-    public void setDimensions(String dimensions){this.dimensions = new SimpleStringProperty(dimensions);}
-
-    public String getType(){return type.get();}
-
-    public void setType(String type){this.type = new SimpleStringProperty(type);}
-
-    public String getItem(){return item.get();}
-
-    public void setItem(String item){this.item = new SimpleStringProperty(item);}
 
 
     /**
@@ -172,7 +161,6 @@ public class Stock {
         String type = this.type.toString();
         String length = this.length.toString();
         String diameter = this.diameter.toString();
-        String width = this.width.toString();
         String ID = null;
 
         switch (name) {
@@ -208,7 +196,7 @@ public class Stock {
                 break;
         }
 
-        ID += length + diameter + width;
+        ID += length + diameter;
         return ID;
     }
 

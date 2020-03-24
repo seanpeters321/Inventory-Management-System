@@ -1,7 +1,6 @@
 package gui;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.animation.*;
@@ -21,10 +20,8 @@ import javafx.util.Duration;
 import main.FileEditor;
 
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
-import java.security.Key;
 import java.util.ResourceBundle;
 
 /**
@@ -67,18 +64,28 @@ public class LoginController implements Initializable {
         String user, pass;
         user = txtUser.getText();
         pass = txtPass.getText();
-        boolean match = file.userpassMatch(user, pass);
+
         //compares the username and password and returns a boolean
-        if (match) {
+        if (file.isAdmin(user, pass)) {
             statusLabel.setText("Login Success");
-            Parent page = FXMLLoader.load(getClass().getResource("/gui/Main.fxml"));
+            Parent page = FXMLLoader.load(getClass().getResource("/gui/MainAdmin.fxml"));
             Scene npage = new Scene(page);
 
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(npage);
             window.setMaximized(true);
             window.show();
-        } else {
+        } else if(file.isEmployee(user, pass)){
+            statusLabel.setText("Login Success");
+            Parent page = FXMLLoader.load(getClass().getResource("/gui/MainEmployee.fxml"));
+            Scene npage = new Scene(page);
+
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(npage);
+            window.setMaximized(true);
+            window.show();
+        }
+        else {
             //Fade in animation for the error text for 300ms
             statusLabel.setOpacity(0);
             statusLabel.setText("Invalid Username and/or Password");

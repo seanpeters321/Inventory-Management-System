@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 
 /**
- * Manages InventorySheet.fxml
+ * Manages InventorySheetEmployee.fxml
  *
  * @author Sean Peters
  */
@@ -77,6 +77,8 @@ public class InventorySheetController implements Initializable {
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+
+        //Sets up columns
         nameColumn.setCellValueFactory(new PropertyValueFactory<Stock, String>("name"));
         idColumn.setCellValueFactory(new PropertyValueFactory<Stock, String>("ID"));
         quantityColumn.setCellValueFactory(new PropertyValueFactory<Stock, Integer>("quantity"));
@@ -114,12 +116,19 @@ public class InventorySheetController implements Initializable {
 
             String resultID = output[0];
             String resultName = output[1];
+
             String resultType = output[2];
+
             String resultDim = output[3];
-            String item = resultType + " " + resultName;
+            String dim = resultDim + " in";
+
+            String item = resultName + " " + resultType;
+
             int resultQnty = Integer.parseInt(output[4]);
+
             double resultCost = Double.parseDouble(output[5]);
-            stck = new Stock(resultID, item, resultQnty, resultCost, resultDim);
+
+            stck = new Stock(resultID, item, resultQnty, resultCost, dim);
             stock.add(stck);
         }
         fr.close();
@@ -130,11 +139,28 @@ public class InventorySheetController implements Initializable {
      * Returns to Main page
      *
      * @param event Back button being pressed
-     * @throws IOException If Main.fxml cannot be found
+     * @throws IOException If MainAdmin.fxml cannot be found
      */
-    public void goBack(ActionEvent event) throws IOException {
+    public void goBackAdmin(ActionEvent event) throws IOException {
         //grabs scene source
-        Parent page = FXMLLoader.load(getClass().getResource("/gui/Main.fxml"));
+        Parent page = FXMLLoader.load(getClass().getResource("/gui/MainAdmin.fxml"));
+        Scene npage = new Scene(page);
+        //grabs main stage object
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(npage);
+        window.setMaximized(true);
+        window.show();
+    }
+
+    /**
+     * Returns to Main page
+     *
+     * @param event Back button being pressed
+     * @throws IOException If MainAdmin.fxml cannot be found
+     */
+    public void goBackEmployee(ActionEvent event) throws IOException {
+        //grabs scene source
+        Parent page = FXMLLoader.load(getClass().getResource("/gui/MainEmployee.fxml"));
         Scene npage = new Scene(page);
         //grabs main stage object
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -147,11 +173,27 @@ public class InventorySheetController implements Initializable {
      * Refreshes the chart to show changes to inventory.txt
      *
      * @param event Refresh button being pressed
-     * @throws IOException If InventorySheet.fxml cannot be found
+     * @throws IOException If InventorySheetEmployee.fxml cannot be found
      */
-    public void refresh(ActionEvent event) throws IOException {
+    public void refreshAdmin(ActionEvent event) throws IOException {
         //grabs scene source
-        Parent page = FXMLLoader.load(getClass().getResource("/gui/InventorySheet.fxml"));
+        Parent page = FXMLLoader.load(getClass().getResource("/gui/InventorySheetAdmin.fxml"));
+        Scene npage = new Scene(page);
+        //grabs stage object
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(npage);
+        window.show();
+    }
+
+    /**
+     * Refreshes the chart to show changes to inventory.txt
+     *
+     * @param event Refresh button being pressed
+     * @throws IOException If InventorySheetEmployee.fxml cannot be found
+     */
+    public void refreshEmployee(ActionEvent event) throws IOException {
+        //grabs scene source
+        Parent page = FXMLLoader.load(getClass().getResource("/gui/InventorySheetEmployee.fxml"));
         Scene npage = new Scene(page);
         //grabs stage object
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();

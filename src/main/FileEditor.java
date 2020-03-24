@@ -20,31 +20,53 @@ public class FileEditor {
     }
 
     /**
-     * Searches through the accounts.txt document to match the entered username with
-     * one existing in this system. If such a username exists the entered password
-     * will be compared with the line in the document following the username, which
-     * is the related password.
-     *
-     * @param enteredUser Username entered
-     * @param enteredPass Password entered
-     * @return If Username and Password match
+     * Checks if user
+     * @return
      * @throws FileNotFoundException
      */
-    public boolean userpassMatch(String enteredUser, String enteredPass) throws FileNotFoundException {
-        boolean match = false;
+    public boolean isAdmin(String enteredUser, String enteredPass) throws FileNotFoundException{
+        boolean admin = false;
         try (Scanner fr = new Scanner(new FileReader("./src/resources/txt/accounts.txt"))) {
-            String userpass, pass = "";
+            String userpass, pass = "", type = "";
             while (fr.hasNextLine()) {
+
                 userpass = fr.nextLine();
                 String[] output = userpass.split("-");
                 String user = output[0];
-                pass = output[1];
+                if(user.contentEquals(enteredUser)) {
+                    pass = output[1];
+                    type = output[2];
+                    break;
+                }
             }
-
-            if (pass.contentEquals(enteredPass))
-                return true;
             fr.close();
+
+            if (pass.contentEquals(enteredPass) && type.contentEquals("admin"))
+                return true;
         }
-        return match;
+        return admin;
+    }
+
+    public boolean isEmployee(String enteredUser, String enteredPass) throws FileNotFoundException{
+        boolean employee = false;
+        try (Scanner fr = new Scanner(new FileReader("./src/resources/txt/accounts.txt"))) {
+            String userpass, pass = "", type = "";
+            while (fr.hasNextLine()) {
+
+                userpass = fr.nextLine();
+                String[] output = userpass.split("-");
+                String user = output[0];
+                if(user.contentEquals(enteredUser)) {
+                    pass = output[1];
+                    type = output[2];
+                    break;
+                }
+            }
+            fr.close();
+
+            if (pass.contentEquals(enteredPass) && type.contentEquals("employee"))
+                    return true;
+        }
+        return employee;
     }
 }

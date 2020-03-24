@@ -1,7 +1,6 @@
 package gui;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXHamburger;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,7 +16,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Manages Main.fxml
+ * Manages MainAdmin.fxml
  *
  * @author Sean
  */
@@ -45,13 +44,29 @@ public class MainController implements Initializable {
     }
 
     /**
-     * Changes scene to InventorySheet.fxml
+     * Changes scene to InventorySheetEmployee.fxml
      *
      * @param event
      * @throws IOException
      */
-    public void goToInventorySheet(ActionEvent event) throws IOException {
-        Parent page = FXMLLoader.load(getClass().getResource("/gui/InventorySheet.fxml"));
+    public void goToInventorySheetAdmin(ActionEvent event) throws IOException {
+        Parent page = FXMLLoader.load(getClass().getResource("/gui/InventorySheetAdmin.fxml"));
+        Scene npage = new Scene(page);
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(npage);
+        window.setMaximized(true);
+        window.show();
+    }
+
+    /**
+     * Changes scene to InventorySheetEmployee.fxml
+     *
+     * @param event
+     * @throws IOException
+     */
+    public void goToInventorySheetEmployee(ActionEvent event) throws IOException {
+        Parent page = FXMLLoader.load(getClass().getResource("/gui/InventorySheetEmployee.fxml"));
         Scene npage = new Scene(page);
 
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
