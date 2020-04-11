@@ -1,5 +1,8 @@
 import javafx.application.Application;
 import javafx.stage.Stage;
+import main.FileEditor;
+
+import java.io.*;
 
 public class Main extends Application {
 
@@ -8,7 +11,10 @@ public class Main extends Application {
 
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
+        String filePath = "C:\\Users\\Sean\\IdeaProjects\\Metels Inc. Inventory Management System\\tests\\main\\hello";
+        FileEditor fileEditor = new FileEditor();
+        fileEditor.modifyFile(filePath, "goodbye", "hello");
 
     }
 }

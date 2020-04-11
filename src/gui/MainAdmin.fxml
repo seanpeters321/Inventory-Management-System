@@ -20,6 +20,7 @@
                           </font>
                       </Button>
                   <JFXButton fx:id="orderButton" onAction="#goToOrderPage" prefHeight="115.0" prefWidth="99.0" text="Order Page" />
+                  <JFXButton fx:id="usersButton" onAction="#goToUsersPage" prefHeight="113.0" prefWidth="89.0" text="Users" />
                   </buttons>
               </ButtonBar>
             <Label layoutX="28.0" layoutY="23.0" prefHeight="57.0" prefWidth="368.0" styleClass="big-label-text" text="Admin" />

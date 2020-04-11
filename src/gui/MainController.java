@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import main.UserType;
 
 import java.io.IOException;
 import java.net.URL;
@@ -20,9 +21,11 @@ import java.util.ResourceBundle;
  *
  * @author Sean
  */
-public class MainController implements Initializable {
+public class MainController extends LoginController implements Initializable {
     @FXML
     private JFXButton orderButton;
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -82,6 +85,14 @@ public class MainController implements Initializable {
      */
     public void goToOrderPage(ActionEvent event) throws IOException{
         Parent page = FXMLLoader.load(getClass().getResource("/gui/OrderPage.fxml"));
+        Scene npage = new Scene(page);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(npage);
+        window.show();
+    }
+
+    public void goToUsersPage(ActionEvent event) throws IOException{
+        Parent page = FXMLLoader.load(getClass().getClassLoader().getResource("\\gui/UsersPage.fxml"));
         Scene npage = new Scene(page);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(npage);

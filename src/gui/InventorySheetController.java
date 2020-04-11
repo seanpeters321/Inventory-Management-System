@@ -15,6 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
+import main.FileEditor;
 import main.Stock;
 
 
@@ -28,7 +29,7 @@ import java.util.Scanner;
  *
  * @author Sean Peters
  */
-public class InventorySheetController implements Initializable {
+public class InventorySheetController extends MainController implements Initializable {
 //FX:IDs
     @FXML
     private TableView<Stock> tableView;
@@ -37,42 +38,53 @@ public class InventorySheetController implements Initializable {
     @FXML
     private TableColumn<Stock, String> idColumn;
     @FXML
-    private TableColumn<Stock, Integer> quantityColumn;
+    private TableColumn<Stock, String> quantityColumn;
     @FXML
     private TableColumn<Stock, Double> priceColumn;
     @FXML
     private TableColumn<Stock, String> dimColumn;
 
+
     /**
-     * Allows for the Name cell to be edited (Not pushed to text document)
+     * Allows for the Name cell to be edited
      *
      * @param edittedCell
      */
-    public void changeNameCellEvent(@SuppressWarnings("rawtypes") CellEditEvent edittedCell) throws IOException {
-        String filePath = ".src/resources/txt/inventory.txt";
-        Scanner scanner = new Scanner(new FileReader(filePath));
-        FileReader fileReader = new FileReader(filePath);
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-
-        String string;
-            while ((string = bufferedReader.readLine()) != null) {
-
-                String str = fileReader.toString();
-                String[] output = string.split("-");
-            }
-        Stock stockSelected = tableView.getSelectionModel().getSelectedItem();
-        String newname = edittedCell.getNewValue().toString();
-        stockSelected.setName(newname);
+    public void changeNameCellEvent(CellEditEvent<Stock, String> edittedCell) throws IOException {
+        String newName = edittedCell.getNewValue().toString();
+        String oldName= edittedCell.getOldValue().toString();
+        String oldRow = edittedCell.getRowValue().toString();
+        String newRow = oldRow.replaceAll(oldName,newName);
+        oldRow = oldRow.replace(" ", "-");
+        newRow = newRow.replace(" ", "-");
+        oldRow = oldRow.replaceAll("-in", "");
+        newRow = newRow.replaceAll("-in", "");
+        editFile(oldRow, newRow);
     }
 
     /**
-     * Allows for the ID cell to be edited (Not pushed to text document)
+     * Allows for the Quantity cell to be edited
      *
      * @param edittedCell
      */
-    public void changeIDCellEvent(@SuppressWarnings("rawtypes") CellEditEvent edittedCell) {
-        Stock stockSelected = tableView.getSelectionModel().getSelectedItem();
-        stockSelected.setID(edittedCell.getNewValue().toString());
+    public void changeQuantityCellEvent(@SuppressWarnings("rawtypes") CellEditEvent edittedCell) {
+
+        String newQuantity = edittedCell.getNewValue().toString();
+        String oldQuantity= edittedCell.getOldValue().toString();
+        newQuantity = "-" + newQuantity + "-";
+        oldQuantity = "-" + oldQuantity + "-";
+        String oldRow = edittedCell.getRowValue().toString();
+        oldRow = oldRow.replace(" ", "-");
+        String newRow = oldRow.replaceAll(oldQuantity,newQuantity);
+        newRow = newRow.replace(" ", "-");
+        oldRow = oldRow.replaceAll("-in", "");
+        newRow = newRow.replaceAll("-in", "");
+        editFile(oldRow, newRow);
+    }
+
+    public void changePriceCellEvent(CellEditEvent editedCell){
+        String newPrice = editedCell.getNewValue().toString();
+        String oldPrice = editedCell.getOldValue().toString();
     }
 
     @Override
@@ -81,7 +93,7 @@ public class InventorySheetController implements Initializable {
         //Sets up columns
         nameColumn.setCellValueFactory(new PropertyValueFactory<Stock, String>("name"));
         idColumn.setCellValueFactory(new PropertyValueFactory<Stock, String>("ID"));
-        quantityColumn.setCellValueFactory(new PropertyValueFactory<Stock, Integer>("quantity"));
+        quantityColumn.setCellValueFactory(new PropertyValueFactory<Stock, String>("quantity"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<Stock, Double>("price"));
         dimColumn.setCellValueFactory(new PropertyValueFactory<Stock, String>("dimensions"));
 
@@ -91,9 +103,10 @@ public class InventorySheetController implements Initializable {
             e.printStackTrace();
         }
 
-        tableView.setEditable(true);
+        if(MainController.userType.isAdmin)
+            tableView.setEditable(true);
         nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        idColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        quantityColumn.setCellFactory(TextFieldTableCell.forTableColumn());
     }
 
     /**
@@ -124,7 +137,7 @@ public class InventorySheetController implements Initializable {
 
             String item = resultName + " " + resultType;
 
-            int resultQnty = Integer.parseInt(output[4]);
+            String resultQnty = output[4];
 
             double resultCost = Double.parseDouble(output[5]);
 
@@ -199,5 +212,11 @@ public class InventorySheetController implements Initializable {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(npage);
         window.show();
+    }
+
+    public static void editFile(String oldString, String newString){
+        String filePath = "C:\\Users\\Sean\\IdeaProjects\\Metels Inc. Inventory Management System\\src\\resources\\txt\\inventory.txt";
+        FileEditor fileEditor = new FileEditor();
+        fileEditor.modifyFile(filePath, oldString, newString);
     }
 }

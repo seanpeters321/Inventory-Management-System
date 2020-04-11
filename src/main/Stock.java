@@ -1,7 +1,6 @@
 package main;
 
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.io.IOException;
@@ -12,8 +11,8 @@ import java.io.IOException;
  * @author Sean Peters
  */
 public class Stock {
-    private SimpleStringProperty name, ID, length, diameter, width, type, dimensions, item;
-    private SimpleIntegerProperty quantity;
+    private SimpleStringProperty name, ID, length, diameter, width, type, dimensions, item, quantity;
+    //private SimpleIntegerProperty quantity;
     private SimpleDoubleProperty price;
 
 
@@ -23,17 +22,17 @@ public class Stock {
      * @param quantity
      * @param price
      */
-    public Stock(String ID, String name, int quantity, double price, String dimensions) {
+    public Stock(String ID, String name, String quantity, double price, String dimensions) {
         this.name = new SimpleStringProperty(name);
         this.ID = new SimpleStringProperty(ID);
-        this.quantity = new SimpleIntegerProperty(quantity);
+        this.quantity = new SimpleStringProperty(quantity);
         this.price = new SimpleDoubleProperty(price);
         this.dimensions = new SimpleStringProperty(dimensions);
     }
-    public Stock(String ID, String name, int quantity, double price) {
+    public Stock(String ID, String name, String quantity, double price) {
         this.name = new SimpleStringProperty(name);
         this.ID = new SimpleStringProperty(ID);
-        this.quantity = new SimpleIntegerProperty(quantity);
+        this.quantity = new SimpleStringProperty(quantity);
         this.price = new SimpleDoubleProperty(price);
     }
 
@@ -100,17 +99,15 @@ public class Stock {
         this.item.set(item);
     }
 
-    public int getQuantity() {
+    public String getQuantity() {
         return quantity.get();
     }
 
-    public SimpleIntegerProperty quantityProperty() {
+    public SimpleStringProperty quantityProperty() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity.set(quantity);
-    }
+    public void setQuantity(String quantity) { this.quantity.set(quantity); }
 
     public double getPrice() {
         return price.get();
@@ -134,7 +131,7 @@ public class Stock {
      * @return
      * @throws IOException
      */
-    public Stock toStock(String id, String name, int quantity, double cost, String dimensions, String type) throws IOException {
+    public Stock toStock(String id, String name, String quantity, double cost, String dimensions, String type) throws IOException {
         Stock stock = new Stock(id, name, quantity, cost, dimensions);
         return stock;
     }
@@ -146,7 +143,7 @@ public class Stock {
      */
     public String toString() {
         String stock = "";
-        stock = ID.get() + " " + name.get() + " " + quantity.intValue() + " " + price.doubleValue();
+        stock = ID.get() + " " + name.get() + " " + dimensions.get() + " " + quantity.get() + " " + price.intValue();
         return stock;
     }
 

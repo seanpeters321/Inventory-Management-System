@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.UsersController">
+   <children>
+      <JFXButton layoutX="28.0" layoutY="42.0" onAction="#goBack" prefHeight="55.0" prefWidth="109.0" stylesheets="@../resources/stylesheets/StyleSheet.css" text="Back" />
+      <TableView fx:id="usersTable" fixedCellSize="-10.0" layoutX="679.0" layoutY="83.0" prefHeight="739.0" prefWidth="1115.0">
+        <columns>
+          <TableColumn fx:id="namesCol" prefWidth="541.0" text="Name" />
+          <TableColumn fx:id="typesCol" prefWidth="261.0" text="Type" />
+            <TableColumn fx:id="passwordsCol" prefWidth="388.0" text="Password" />
+        </columns>
+      </TableView>
+      <AnchorPane layoutX="145.0" layoutY="116.0" prefHeight="679.0" prefWidth="455.0" styleClass="primary-color-light" stylesheets="@../resources/stylesheets/StyleSheet.css">
+         <children>
+            <JFXTextField fx:id="username" labelFloat="true" layoutX="70.0" layoutY="44.0" promptText="Username" />
+            <JFXTextField fx:id="password" labelFloat="true" layoutX="70.0" layoutY="94.0" promptText="Password" />
+            <JFXRadioButton fx:id="employee" layoutX="84.0" layoutY="148.0" text="Employee">
+               <toggleGroup>
+                  <ToggleGroup fx:id="group" />
+               </toggleGroup>
+            </JFXRadioButton>
+            <JFXRadioButton fx:id="admin" layoutX="84.0" layoutY="185.0" text="Administrator" toggleGroup="$group" />
+            <JFXButton fx:id="addUserButton" layoutX="70.0" layoutY="276.0" onAction="#addUser" text="Add User" />
+         </children>
+      </AnchorPane>
+      <Label layoutX="317.0" layoutY="61.0" styleClass="big-label-text" stylesheets="@../resources/stylesheets/StyleSheet.css" text="New User" />
+   </children>
+</AnchorPane>

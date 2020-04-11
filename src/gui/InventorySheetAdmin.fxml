@@ -22,8 +22,8 @@
         <TableView fx:id="tableView" layoutX="105.0" layoutY="100.0" prefHeight="616.0" prefWidth="1096.0" styleClass="primary-color-light" stylesheets="@../resources/stylesheets/StyleSheet.css" AnchorPane.bottomAnchor="364.0" AnchorPane.leftAnchor="105.0" AnchorPane.rightAnchor="719.0" AnchorPane.topAnchor="100.0">
             <columns>
                 <TableColumn fx:id="idColumn" prefWidth="100.0" text="ID" />
-                <TableColumn fx:id="nameColumn" prefWidth="100.0" text="Name" />
-                <TableColumn fx:id="quantityColumn" prefWidth="89.0" text="Quantity" />
+                <TableColumn fx:id="nameColumn" onEditCommit="#changeNameCellEvent" prefWidth="100.0" text="Name" />
+                <TableColumn fx:id="quantityColumn" onEditCommit="#changeQuantityCellEvent" prefWidth="89.0" text="Quantity" />
                 <TableColumn fx:id="dimColumn" prefWidth="75.0" text="Dimensions" />
                 <TableColumn fx:id="priceColumn" prefWidth="100.0" text="Price" />
             </columns>

@@ -18,6 +18,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import main.FileEditor;
+import main.UserType;
 
 
 import java.io.IOException;
@@ -40,6 +41,8 @@ public class LoginController implements Initializable {
     @FXML
     private JFXButton loginBtn;
 
+    public static UserType userType;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //Adds shadow effect to button
@@ -59,6 +62,7 @@ public class LoginController implements Initializable {
      * @throws IOException
      */
     public void Login(ActionEvent event) throws IOException {
+
         // Checks for username and password match
         FileEditor file = new FileEditor();
         String user, pass;
@@ -67,6 +71,9 @@ public class LoginController implements Initializable {
 
         //compares the username and password and returns a boolean
         if (file.isAdmin(user, pass)) {
+
+            this.userType = new UserType("admin");
+
             statusLabel.setText("Login Success");
             Parent page = FXMLLoader.load(getClass().getResource("/gui/MainAdmin.fxml"));
             Scene npage = new Scene(page);
@@ -76,6 +83,9 @@ public class LoginController implements Initializable {
             window.setMaximized(true);
             window.show();
         } else if(file.isEmployee(user, pass)){
+
+            this.userType = new UserType("employ");
+
             statusLabel.setText("Login Success");
             Parent page = FXMLLoader.load(getClass().getResource("/gui/MainEmployee.fxml"));
             Scene npage = new Scene(page);
