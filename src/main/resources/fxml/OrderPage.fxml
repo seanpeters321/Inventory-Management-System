@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" styleClass="main-background" stylesheets="@../stylesheets/StyleSheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.controllers.OrderPageController">
+   <children>
+      <AnchorPane prefHeight="1079.0" prefWidth="1132.0" scaleY="1.1">
+         <children>
+            <Label layoutX="756.0" layoutY="47.0" styleClass="big-label-text" text="Select Items" />
+            <DatePicker fx:id="orderDate" layoutX="215.0" layoutY="78.0" promptText="Date of Order" scaleX="1.5" scaleY="1.5">
+               <tooltip>
+                  <Tooltip text="Date Order was Placed by Client" />
+               </tooltip></DatePicker>
+            <JFXTextField fx:id="orderName" labelFloat="true" layoutX="122.0" layoutY="130.0" prefHeight="25.0" prefWidth="165.0" promptText="Customer Name" scaleX="1.5" scaleY="1.5" AnchorPane.topAnchor="130.0" />
+            <JFXTextField fx:id="orderQty" labelFloat="true" layoutX="102.0" layoutY="194.0" prefHeight="25.0" prefWidth="55.0" promptText="Quantity" scaleX="1.5" scaleY="1.5" />
+            <JFXComboBox fx:id="orderMetal" layoutX="208.0" layoutY="194.0" prefHeight="25.0" prefWidth="107.0" promptText="Metal" scaleX="1.5" scaleY="1.5">
+               <tooltip>
+                  <Tooltip text="Type of Metal (i.e. Copper, Steel, Alumnium etc.)" />
+               </tooltip>
+            </JFXComboBox>
+            <JFXComboBox fx:id="orderType" layoutX="389.0" layoutY="194.0" prefHeight="25.0" prefWidth="119.0" promptText="Type" scaleX="1.5" scaleY="1.5">
+               <tooltip>
+                  <Tooltip text="Type of Stock" />
+               </tooltip>
+            </JFXComboBox>
+            <JFXComboBox fx:id="orderLength" labelFloat="true" layoutX="111.0" layoutY="266.0" promptText="Length" scaleX="1.5" scaleY="1.5">
+               <tooltip>
+                  <Tooltip text="Biggest Dimension of Stock" />
+               </tooltip>
+            </JFXComboBox>
+            <JFXComboBox fx:id="orderWidth" labelFloat="true" layoutX="238.0" layoutY="267.0" promptText="Width" scaleX="1.5" scaleY="1.5">
+               <tooltip>
+                  <Tooltip text="Second Biggest Dimension of Stock (Only Applies to Flat Stock)" wrapText="true" />
+               </tooltip>
+            </JFXComboBox>
+            <JFXComboBox fx:id="orderDiameter" labelFloat="true" layoutX="364.0" layoutY="266.0" promptText="Diameter" scaleX="1.5" scaleY="1.5">
+               <tooltip>
+                  <Tooltip text="Diameter/Height of Stock" />
+               </tooltip>
+            </JFXComboBox>
+            <JFXButton fx:id="orderAdd" layoutX="98.0" layoutY="341.0" onAction="#addToOrder" scaleX="1.5" scaleY="1.5" text="Add to Order" />
+            <JFXButton fx:id="orderConfirm" layoutX="312.0" layoutY="341.0" onAction="#orderConfirm" scaleX="1.5" scaleY="1.5" text="Confirm Order" />
+            <Pane layoutX="82.0" layoutY="383.0" prefHeight="400.0" prefWidth="300.0" styleClass="primary-color-light" />
+            <JFXListView fx:id="order" layoutX="132.0" layoutY="383.0" scaleX="1.5" styleClass="primary-color-light" stylesheets="@../stylesheets/StyleSheet.css" AnchorPane.bottomAnchor="296.0" AnchorPane.leftAnchor="132.0" AnchorPane.rightAnchor="800.0" AnchorPane.topAnchor="383.0" />
+            <Label fx:id="orderAlert" layoutX="321.0" layoutY="311.0" opacity="0.0" prefHeight="17.0" prefWidth="300.0" scaleX="1.5" scaleY="1.5" styleClass="label-login-alert" text="Label" />
+            <JFXButton fx:id="goBack" contentDisplay="CENTER" layoutX="36.0" layoutY="61.0" onAction="#goBack" prefHeight="47.0" prefWidth="90.0" text="Back" />
+            <JFXListView fx:id="orderSelect" layoutX="620.0" layoutY="100.0" prefHeight="686.0" prefWidth="470.0" />
+            <JFXButton fx:id="orderSelectAdd" buttonType="RAISED" layoutX="985.0" layoutY="797.0" onAction="#orderSelectAdd" prefHeight="35.0" prefWidth="105.0" text="Add to Order" />
+         </children>
+      </AnchorPane>
+      <Label layoutX="1450.0" layoutY="44.0" styleClass="big-label-text" text="Order History">
+         <font>
+            <Font size="64.0" />
+         </font></Label>
+      <Separator layoutX="1080.0" layoutY="-3.0" orientation="VERTICAL" prefHeight="1084.0" prefWidth="114.0" />
+      <JFXListView layoutX="1177.0" layoutY="53.0" prefHeight="970.0" prefWidth="671.0" styleClass="primary-color-light">
+         <effect>
+            <DropShadow />
+         </effect>
+      </JFXListView>
+   </children>
+</AnchorPane>

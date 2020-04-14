@@ -1,8 +1,6 @@
 import javafx.application.Application;
 import javafx.stage.Stage;
-import main.FileEditor;
-
-import java.io.*;
+import main.java.FileEditor;
 
 public class Main extends Application {
 

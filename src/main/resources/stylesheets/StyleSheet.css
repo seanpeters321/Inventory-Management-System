@@ -1,0 +1,136 @@
+
+.root {
+    -fx-background-color: #FFFFFF;
+    -fx-font-family: Roboto;
+}
+
+/*
+Colors
+ */
+.main-background {
+    -fx-background-color: #FFFFFF;
+}
+
+.primary-color {
+    -fx-background-color: #708090;
+}
+
+.primary-color-dark {
+    -fx-background-color: #445463;
+}
+
+.primary-color-light {
+    -fx-background-color: #9fafc0;
+}
+
+.secondary-color {
+    -fx-background-color: #B87333;
+}
+
+.secondary-color-dark {
+    -fx-background-color: #844703;
+}
+
+.secondary-color-light {
+    -fx-background-color: #eea260;
+}
+
+
+/*
+Base Styles
+ */
+.big-label-text {
+    -fx-font-size: 24pt;
+    -fx-font-family: "Roboto Light";
+}
+
+/*
+ * Labels	
+ */
+
+.label-login {
+    -fx-text-fill: #515A5A;
+    -fx-text-size: 20pt;
+    -fx-font-family: Roboto;
+}
+
+.logo-font-big {
+    -fx-font-size: 20pt;
+    -fx-font-family: Bahnschrift;
+}
+
+.label-login-alert {
+    -fx-text-fill: #B20020;
+    -fx-text-size: 10pt;
+    -fx-font-family: Roboto;
+}
+
+/*
+ * Text Fields
+ */
+.text-field {
+    -jfx-unfocused-color: rgba(109, 100, 105, 0.88);
+}
+
+/*
+ * Buttons
+ */
+.button {
+    -fx-background-color: #909090,
+    #FFFFFF;
+    -fx-background-radius: 4;
+    -fx-background-insets: 0, 1, 1;
+    -fx-font-family: Roboto;
+    -jfx-button-type: RAISED;
+}
+
+.button:pressed {
+    -fx-background-color: #445463;
+    -fx-text-fill: white;
+}
+
+.button:hover {
+    -fx-background-color: #909090,
+    #9fafc0;
+    -fx-text-fill: white;
+}
+
+.button:hover:pressed {
+    -fx-background-color: #445463;
+    -fx-text-fill: white;
+}
+
+.back-button {
+    -fx-background-color: #FFFFFF;
+    -fx-shape: "resources/icons/svg/arrow-72-83543.svg";
+}
+
+/*
+Table View
+ */
+.table-view {
+    -fx-background-color: transparent;
+    -fx-border-color: #515A5A;
+}
+
+/*
+Menu/Menu Bar
+ */
+
+.menu-bar {
+    -fx-background-color: #99A3A4;
+}
+
+.jfx-hamburger-icon {
+    -fx-spacing: 5;
+    -fx-cursor: hand;
+}
+
+.jfx-hamburger-icon StackPane {
+    -fx-pref-width: 40px;
+    -fx-pref-height: 7px;
+    -fx-background-color: #D63333;
+    -fx-background-radius: 5px;
+}
+
+   
