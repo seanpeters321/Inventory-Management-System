@@ -1,12 +1,6 @@
 package main.java.controllers;
 
 import com.jfoenix.controls.JFXButton;
-import javafx.animation.Interpolator;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,17 +11,14 @@ import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.util.Duration;
 import main.java.FileEditor;
 import main.java.Formatter;
 import main.java.References;
 import main.java.Stock;
 
-import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.Scanner;
 
 
 /**
@@ -37,6 +28,8 @@ import java.util.Scanner;
  */
 public class InventorySheetController extends MainController implements Initializable {
 
+    Formatter formatter;
+    FileEditor fileEditor = new FileEditor();
     // Scene FX:ID's
     @FXML
     private TableView<Stock> tableView;
@@ -57,9 +50,6 @@ public class InventorySheetController extends MainController implements Initiali
     @FXML
     private Label errorLabel;
 
-    Formatter formatter;
-    FileEditor fileEditor = new FileEditor();
-
     /**
      * Allows for the Name cell to be edited
      *
@@ -78,20 +68,11 @@ public class InventorySheetController extends MainController implements Initiali
      *
      * @param editedCell
      */
-    public void changeQuantityCellEvent( CellEditEvent<Stock, String> editedCell) throws IOException {
+    public void changeQuantityCellEvent(CellEditEvent<Stock, String> editedCell) throws IOException {
         int quantity = Integer.parseInt(editedCell.getNewValue().toString());
-        if(quantity < 0){
-            errorLabel.setOpacity(0);
-            errorLabel.setText("Cannot Go Below Zero");
-            final Timeline tl = new Timeline();
-            KeyValue keyValue = new KeyValue(errorLabel.opacityProperty(), 1, Interpolator.EASE_IN);
-            KeyFrame keyFrame = new KeyFrame(Duration.millis(300), keyValue);
-            tl.setCycleCount(1);
-            tl.setAutoReverse(true);
-            tl.getKeyFrames().addAll(keyFrame);
-            tl.play();
-            tableView.refresh();
-        }else {
+        if (quantity < 0) {
+            animations.errorMessage("Cannot Go Below Zero", errorLabel);
+        } else {
             formatter = new Formatter();
             formatter.formatStockFromCellEdit(editedCell);
             fileEditor.modifyFile(INVENTORY, formatter.oldRow, formatter.newRow);
@@ -111,7 +92,7 @@ public class InventorySheetController extends MainController implements Initiali
         dimColumn.setCellValueFactory(new PropertyValueFactory<Stock, String>("dimensions"));
 
         try {
-            tableView.setItems(getStock());
+            tableView.setItems(fileEditor.getInventory());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -120,45 +101,6 @@ public class InventorySheetController extends MainController implements Initiali
             tableView.setEditable(true);
         nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         quantityColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-    }
-
-    /**
-     * Grabs items from the inventory.txt file and converts them to be read and added to an ObservableList. This list in then implemented in the table view.
-     *
-     * @return Stock ObservableList
-     * @throws IOException
-     * @see ObservableList
-     * @see Stock
-     */
-    public ObservableList<Stock> getStock() throws IOException {
-        ObservableList<Stock> stock = FXCollections.observableArrayList();
-
-        Scanner fr = new Scanner(new FileReader(INVENTORY));
-        while (fr.hasNext()) {
-            String string;
-            Stock stck;
-            string = fr.next();
-            String[] output = string.split("-");
-
-            String resultID = output[0];
-            String resultName = output[1];
-
-            String resultType = output[2];
-
-            String resultDim = output[3];
-            String dim = resultDim + " in";
-
-            String item = resultName + " " + resultType;
-
-            String resultQnty = output[4];
-
-            double resultCost = Double.parseDouble(output[5]);
-
-            stck = new Stock(resultID, item, resultQnty, resultCost, dim);
-            stock.add(stck);
-        }
-        fr.close();
-        return stock;
     }
 
     /**
@@ -186,54 +128,31 @@ public class InventorySheetController extends MainController implements Initiali
             String newLine = output[0] + "-" + output[1] + "-" + output[2] + "-" + output[3] + "-" + newQ + "-" + output[5];
             fileEditor.modifyFile(INVENTORY, q, newLine);
             References.INVENTORY_SHEET_ADMIN.refresh();
-        }catch(NullPointerException e){
-            errorLabel.setOpacity(0);
-            errorLabel.setText("Please Select A Stock");
-            final Timeline tl = new Timeline();
-            KeyValue keyValue = new KeyValue(errorLabel.opacityProperty(), 1, Interpolator.EASE_IN);
-            KeyFrame keyFrame = new KeyFrame(Duration.millis(300), keyValue);
-            tl.setCycleCount(1);
-            tl.setAutoReverse(true);
-            tl.getKeyFrames().addAll(keyFrame);
-            tl.play();
+        } catch (NullPointerException e) {
+            animations.errorMessage("Please Select A Stock", errorLabel);
         }
     }
 
+
     public void setSubStock(ActionEvent event) throws IOException {
-        try{
-        FileEditor fileEditor = new FileEditor();
-        String q = tableView.getSelectionModel().getSelectedItem().toString();
-        q = q.replaceAll(" ", "-");
-        q = q.replaceAll("-in-", "-");
-        String[] output = q.split("-");
-        int change = Integer.parseInt(output[4]) - 1;
-        if (change < 0) {
-            errorLabel.setOpacity(0);
-            errorLabel.setText("Cannot Go Below Zero");
-            final Timeline tl = new Timeline();
-            KeyValue keyValue = new KeyValue(errorLabel.opacityProperty(), 1, Interpolator.EASE_IN);
-            KeyFrame keyFrame = new KeyFrame(Duration.millis(300), keyValue);
-            tl.setCycleCount(1);
-            tl.setAutoReverse(true);
-            tl.getKeyFrames().addAll(keyFrame);
-            tl.play();
-        } else {
-            String newQ = Integer.toString(change);
-            String newLine = output[0] + "-" + output[1] + "-" + output[2] + "-" + output[3] + "-" + newQ + "-" + output[5];
-            fileEditor.modifyFile(INVENTORY, q, newLine);
-            References.INVENTORY_SHEET_ADMIN.refresh();
-            errorLabel.setOpacity(0);
-        }
-        }catch(NullPointerException e){
-            errorLabel.setOpacity(0);
-            errorLabel.setText("Please Select A Stock");
-            final Timeline tl = new Timeline();
-            KeyValue keyValue = new KeyValue(errorLabel.opacityProperty(), 1, Interpolator.EASE_IN);
-            KeyFrame keyFrame = new KeyFrame(Duration.millis(300), keyValue);
-            tl.setCycleCount(1);
-            tl.setAutoReverse(true);
-            tl.getKeyFrames().addAll(keyFrame);
-            tl.play();
+        try {
+            FileEditor fileEditor = new FileEditor();
+            String q = tableView.getSelectionModel().getSelectedItem().toString();
+            q = q.replaceAll(" ", "-");
+            q = q.replaceAll("-in-", "-");
+            String[] output = q.split("-");
+            int change = Integer.parseInt(output[4]) - 1;
+            if (change < 0) {
+                animations.errorMessage("Cannot Go Below Zero", errorLabel);
+            } else {
+                String newQ = Integer.toString(change);
+                String newLine = output[0] + "-" + output[1] + "-" + output[2] + "-" + output[3] + "-" + newQ + "-" + output[5];
+                fileEditor.modifyFile(INVENTORY, q, newLine);
+                References.INVENTORY_SHEET_ADMIN.refresh();
+                errorLabel.setOpacity(0);
+            }
+        } catch (NullPointerException e) {
+            animations.errorMessage("Please Select A Stock", errorLabel);
         }
     }
 }

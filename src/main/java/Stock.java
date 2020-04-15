@@ -12,9 +12,9 @@ import java.io.IOException;
  * @author Sean Peters
  */
 public class Stock {
-    private SimpleStringProperty name, ID, length, diameter, width, type, dimensions, item, quantity;
-    //private SimpleIntegerProperty quantity;
-    private SimpleDoubleProperty price;
+    private SimpleStringProperty name, ID, length, diameter, width, type, dimensions, item, quantity, finalQuantity = new SimpleStringProperty("");
+    private SimpleStringProperty fullName;
+    private SimpleDoubleProperty price, totalPrice;
 
 
     /**
@@ -51,6 +51,17 @@ public class Stock {
         this.diameter = new SimpleStringProperty(diameter);
         this.type = new SimpleStringProperty(type);
         this.width = new SimpleStringProperty(width);
+    }
+
+    public Stock(String id, String metal, String type, String dimensions, String quantity, double price) {
+        this.ID = new SimpleStringProperty(id);
+        this.name = new SimpleStringProperty(metal);
+        this.type = new SimpleStringProperty(type);
+        this.dimensions = new SimpleStringProperty(dimensions);
+        this.quantity = new SimpleStringProperty(quantity);
+        this.price = new SimpleDoubleProperty(price);
+        this.fullName = new SimpleStringProperty(metal + " " + type + " [" + dimensions.replace("x", " x ") + "]");
+        this.totalPrice = new SimpleDoubleProperty(price);
     }
 
     public String getName() {
@@ -125,6 +136,18 @@ public class Stock {
         return price;
     }
 
+    public SimpleStringProperty fullNameProperty() {
+        return fullName;
+    }
+
+    public SimpleDoubleProperty totalPriceProperty() {
+        return totalPrice;
+    }
+
+    public SimpleStringProperty finalQuantityProperty() {
+        return finalQuantity;
+    }
+
     /**
      * Creates Stock object off of ID, name, quantity, and cost.
      *
@@ -147,7 +170,7 @@ public class Stock {
      */
     public String toString() {
         String stock = "";
-        stock = ID.get() + " " + name.get() + " " + dimensions.get() + " " + quantity.get() + " " + price.intValue();
+        stock = ID.get() + " " + name.get() + " " + type.get() + " " + dimensions.get() + " " + quantity.get() + " " + price.intValue();
         return stock;
     }
 

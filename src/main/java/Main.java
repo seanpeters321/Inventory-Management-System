@@ -17,6 +17,7 @@ import java.io.IOException;
  * @version 1.0.0, 02/23/2020
  */
 public class Main extends Application {
+    public static Animations animations = new Animations();
     // Inherited Variables
     public static User user;
     public static Stage primaryStage;
@@ -30,6 +31,8 @@ public class Main extends Application {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException {
+        FileEditor fileEditor = new FileEditor();
+        fileEditor.getInventory();
         launch(args);
     }
 
@@ -46,6 +49,10 @@ public class Main extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void close(Stage window) {
+        window.close();
     }
 
 }

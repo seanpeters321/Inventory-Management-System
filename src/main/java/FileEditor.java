@@ -1,6 +1,9 @@
 package main.java;
 
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.io.*;
 import java.util.Scanner;
 
@@ -24,22 +27,34 @@ public class FileEditor {
 
 
     public User userIdentifier(String username, String password) throws FileNotFoundException {
+        User account = null;
         try (Scanner scan = new Scanner(new FileReader(accounts))) {
-
             String user, name = null, pass = null, type = null;
             while (scan.hasNextLine()) {
                 user = scan.nextLine();
-                String[] output = user.split("-");
-                name = output[0];
-                pass = output[1];
-                type = output[2];
-                if (name.contentEquals(username)) {
-                    break;
+                if (username != null && password != null) {
+                    String[] output = user.split("-");
+                    if (output != null) {
+                        name = output[0];
+                        pass = output[1];
+                        type = output[2];
+                    }
+                    if (name.contentEquals(username)) {
+                        if (pass.contentEquals(password)) {
+                            account = new User(name, pass, type);
+                            break;
+                        }
+                    }
                 }
             }
-            User account = new User(name, pass, type);
-            return account;
+
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Invalid Username and/or Password");
+            //e.printStackTrace();
+        } catch (NullPointerException e) {
+            //e.printStackTrace();
         }
+        return account;
     }
 
     public void modifyFile(String filePath, String oldString, String newString) {
@@ -159,5 +174,46 @@ public class FileEditor {
                 e.printStackTrace();
             }
         }
+    }
+
+    public ObservableList<Stock> getInventory() throws FileNotFoundException {
+        ObservableList<Stock> inventory = FXCollections.observableArrayList();
+        Scanner scan = new Scanner(new FileReader(References.INVENTORY.getFilepath()));
+        while (scan.hasNext()) {
+            String stock = scan.next();
+            String[] output = stock.split("-");
+            String ID = output[0];
+            String Metal = output[1];
+            String Type = output[2];
+            String Dimensions = output[3];
+            String Quantity = output[4];
+            double Price = Double.parseDouble(output[5]);
+            Stock item = new Stock(ID, Metal, Type, Dimensions, Quantity, Price);
+            inventory.add(item);
+        }
+        scan.close();
+        return inventory;
+    }
+
+    public Stock getStock(String id) throws FileNotFoundException {
+        Stock item = null;
+        Scanner scan = new Scanner(new FileReader(References.INVENTORY.getFilepath()));
+        while (scan.hasNext()) {
+            String stock = scan.next();
+
+            String[] output = stock.split("-");
+            String ID = output[0];
+            if (ID.contentEquals(id)) {
+                String Metal = output[1];
+                String Type = output[2];
+                String Dimensions = output[3];
+                String Quantity = output[4];
+                double Price = Double.parseDouble(output[5]);
+                item = new Stock(ID, Metal, Type, Dimensions, Quantity, Price);
+                break;
+            }
+        }
+        scan.close();
+        return item;
     }
 }
