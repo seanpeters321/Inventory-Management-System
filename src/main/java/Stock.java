@@ -4,6 +4,7 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.io.IOException;
+import java.util.Random;
 
 
 /**
@@ -64,6 +65,15 @@ public class Stock {
         this.totalPrice = new SimpleDoubleProperty(price);
     }
 
+    public Stock(String metal, String type, String dimensions, String quantity, double price){
+        this.name = new SimpleStringProperty(metal);
+        this.type = new SimpleStringProperty(type);
+        this.dimensions = new SimpleStringProperty(dimensions);
+        this.quantity = new SimpleStringProperty(quantity);
+        this.price = new SimpleDoubleProperty(price);
+        this.ID = new SimpleStringProperty(genID(metal, type));
+    }
+
     public String getName() {
         return name.get();
     }
@@ -73,7 +83,7 @@ public class Stock {
     }
 
     public SimpleStringProperty nameProperty() {
-        return name;
+        return new SimpleStringProperty(name.get() + " " + type.get());
     }
 
     public String getID() {
@@ -128,6 +138,8 @@ public class Stock {
         return price.get();
     }
 
+    public String getType(){return type.get();}
+
     public void setPrice(double price) {
         this.price.set(price);
     }
@@ -179,11 +191,9 @@ public class Stock {
      * Generates ID based off of metal type, length, width, and height.
      * Used to reference inventory.txt and get price of item and its quantity in stock.
      */
-    public String genID() {
-        String name = this.name.toString();
-        String type = this.type.toString();
-        String length = this.length.toString();
-        String diameter = this.diameter.toString();
+    public String genID(String name, String type) {
+        Random random = new Random();
+
         String ID = null;
 
         switch (name) {
@@ -199,7 +209,7 @@ public class Stock {
             case "Steel":
                 ID = "4";
                 break;
-            case "Stainless Steel":
+            case "StainlessSteel":
                 ID = "5";
                 break;
             case "Titanium":
@@ -217,9 +227,16 @@ public class Stock {
             case "Block":
                 ID += "30";
                 break;
+            case "Shaft":
+                ID += "40";
+                break;
+            case "Cylinder":
+                ID += "50";
+                break;
         }
 
-        ID += length + diameter;
+
+        ID += Integer.toString(random.nextInt((999999 - 100000) + 1) + 100000);
         return ID;
     }
 

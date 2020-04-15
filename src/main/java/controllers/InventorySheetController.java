@@ -1,6 +1,10 @@
 package main.java.controllers;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -49,6 +53,12 @@ public class InventorySheetController extends MainController implements Initiali
     private JFXButton subStock;
     @FXML
     private Label errorLabel;
+    @FXML
+    private JFXComboBox metalBox, typeBox;
+    @FXML
+    private JFXTextField dimensions, quantity, price;
+
+
 
     /**
      * Allows for the Name cell to be edited
@@ -81,6 +91,41 @@ public class InventorySheetController extends MainController implements Initiali
         }
     }
 
+    public void deleteStock(ActionEvent event) throws IOException {
+        if(tableView.getSelectionModel().getSelectedItems().isEmpty() == false) {
+            FileEditor fileEditor = new FileEditor();
+            References.CONFIRM_BOX.popOut();
+            ObservableList<Stock> toDelete = FXCollections.observableArrayList();
+            if (decision == true) {
+                toDelete = tableView.getSelectionModel().getSelectedItems();
+                for (Stock item : toDelete) {
+                    String string = item.toString().replace(" ", "-");
+                    fileEditor.modifyFile(INVENTORY, string, "");
+                    fileEditor.clearEmptyLines(INVENTORY);
+                }
+            }
+        }
+        References.INVENTORY_SHEET_ADMIN.refresh();
+    }
+
+    public void addStock(ActionEvent event) throws IOException {
+        FileEditor fileEditor = new FileEditor();
+        String metal = metalBox.getSelectionModel().getSelectedItem().toString();
+        String type = typeBox.getSelectionModel().getSelectedItem().toString();
+        String dim = dimensions.getText();
+        String quantity = this.quantity.getText();
+        double price = Double.parseDouble(this.price.getText());
+
+        Stock stock = new Stock(metal, type, dim, quantity, price);
+        String toAdd = stock.toString().replace(" ", "-");
+        fileEditor.addToFile(INVENTORY,toAdd);
+        metalBox.getSelectionModel().clearSelection();
+        typeBox.getSelectionModel().clearSelection();
+        dimensions.clear();
+        this.quantity.clear();
+        References.INVENTORY_SHEET_ADMIN.refresh();
+    }
+
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         tableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -90,7 +135,10 @@ public class InventorySheetController extends MainController implements Initiali
         quantityColumn.setCellValueFactory(new PropertyValueFactory<Stock, String>("quantity"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<Stock, Double>("price"));
         dimColumn.setCellValueFactory(new PropertyValueFactory<Stock, String>("dimensions"));
-
+        if(user.isAdmin) {
+            metalBox.getItems().addAll("Copper", "Steel", "StainlessSteel", "Aluminum", "Bronze", "Titanium");
+            typeBox.getItems().addAll("Shaft", "Block", "Cylinder", "Sheet", "Bar");
+        }
         try {
             tableView.setItems(fileEditor.getInventory());
         } catch (IOException e) {

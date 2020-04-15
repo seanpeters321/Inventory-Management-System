@@ -19,6 +19,7 @@ public enum References implements Navigator {
     ORDERS_PAGE("./main/resources/fxml/OrderPage.fxml", "Orders"),
     USERS_PAGE("./main/resources/fxml/UsersPage.fxml", "Users"),
     CONFIRM_ORDER_PAGE("./main/resources/fxml/ConfirmOrder.fxml", "Confirm Order"),
+    CONFIRM_BOX("./main/resources/fxml/ConfirmBox.fxml", "Confirm Box"),
 
     //txt filepath's
     ACCOUNTS("./src/main/resources/txt/accounts.txt", "accounts"),
@@ -42,8 +43,13 @@ public enum References implements Navigator {
         Scene scene = new Scene(page);
         Stage window = Main.primaryStage;
         window.setScene(scene);
+        window.setMinWidth(1920);
+        window.setMinHeight(1080);
         window.setMaximized(true);
         if (filepath == LOGIN.filepath) {
+            window.setMaximized(true);
+            window.setMaxWidth(500);
+            window.setMaxHeight(400);
             window.centerOnScreen();
         }
 
@@ -61,6 +67,7 @@ public enum References implements Navigator {
         window.setScene(scene);
         window.showAndWait();
     }
+
 
     public void refresh() throws IOException {
         Parent page = FXMLLoader.load(getClass().getClassLoader().getResource(filepath));

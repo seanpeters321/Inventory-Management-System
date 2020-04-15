@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Paint;
 import main.java.*;
 
 import java.awt.*;
@@ -94,7 +95,6 @@ public class OrderPageController extends MainController implements Initializable
             }
         }
         orderSelect.setItems(list);
-
     }
 
 
@@ -128,14 +128,19 @@ public class OrderPageController extends MainController implements Initializable
      * @param event
      */
     public void orderConfirm(ActionEvent event) throws IOException {
-        name = orderName.getText();
-        References.CONFIRM_ORDER_PAGE.popOut();
+        if(!orderName.getText().contentEquals("")) {
+            name = orderName.getText();
+            References.CONFIRM_ORDER_PAGE.popOut();
 
-        //Clears out name, date, and order parameters.
-        orderName.clear();
-        order.getItems().clear();
-        orderFinal.clear();
-        References.ORDERS_PAGE.refresh();
+            //Clears out name, date, and order parameters.
+            orderName.clear();
+            order.getItems().clear();
+            orderFinal.clear();
+            References.ORDERS_PAGE.refresh();
+        }else{
+
+            orderName.setStyle("-fx-prompt-text-fill: #B20020");
+        }
     }
 
     /**

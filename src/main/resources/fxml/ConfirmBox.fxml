@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" styleClass="secondary-color" stylesheets="@../stylesheets/StyleSheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+fx:controller="main.java.controllers.ConfirmBoxController">
+   <children>
+      <JFXButton layoutX="14.0" layoutY="77.0" onAction="#confirm" prefHeight="72.0" prefWidth="115.0" text="Yes" />
+      <JFXButton layoutX="271.0" layoutY="77.0" onAction="#deny" prefHeight="72.0" prefWidth="115.0" text="No" />
+      <AnchorPane prefHeight="47.0" prefWidth="400.0" styleClass="secondary-color-light">
+         <children>
+            <Label layoutX="43.0" prefHeight="47.0" prefWidth="314.0" styleClass="small-label-text" text="Are You Sure You Want to Delete This" textAlignment="CENTER" />
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -26,6 +26,8 @@ public class Main extends Application {
     public final String ACCOUNTS = References.ACCOUNTS.getFilepath();
     public final String ORDER_HISTORY = References.ORDER_HISTORY.getFilepath();
 
+    public static boolean decision;
+
     /**
      * @param args
      * @throws IOException

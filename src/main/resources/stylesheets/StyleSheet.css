@@ -12,27 +12,27 @@ Colors
 }
 
 .primary-color {
-    -fx-background-color: #708090;
+    -fx-background-color: #4B77BE;
 }
 
 .primary-color-dark {
-    -fx-background-color: #445463;
+    -fx-background-color: #1F4788;
 }
 
 .primary-color-light {
-    -fx-background-color: #9fafc0;
+    -fx-background-color: #89C4F4;
 }
 
 .secondary-color {
-    -fx-background-color: #B87333;
+    -fx-background-color: #BE924B;
 }
 
 .secondary-color-dark {
-    -fx-background-color: #844703;
+    -fx-background-color: #775B2F;
 }
 
 .secondary-color-light {
-    -fx-background-color: #eea260;
+    -fx-background-color: #DFC9A5;
 }
 
 
@@ -44,6 +44,15 @@ Base Styles
     -fx-font-family: "Roboto Light";
 }
 
+.medium-label-text{
+    -fx-font-size: 18pt;
+    -fx-font-family: "Roboto Light";
+}
+.small-label-text{
+    -fx-font-size: 14pt;
+    -fx-font-family: "Roboto Light";
+}
+
 /*
  * Labels	
  */
@@ -52,6 +61,7 @@ Base Styles
     -fx-text-fill: #515A5A;
     -fx-text-size: 20pt;
     -fx-font-family: Roboto;
+    -fx-text-fill: #1F4788;
 }
 
 .logo-font-big {
@@ -68,8 +78,22 @@ Base Styles
 /*
  * Text Fields
  */
-.text-field {
-    -jfx-unfocused-color: rgba(109, 100, 105, 0.88);
+.jfx-text-field {
+    -jfx-unfocus-color: #89C4F4;
+    -jfx-focus-color: #1F4788;
+}
+
+.jfx-password-field {
+    -jfx-unfocus-color: #89C4F4;
+    -jfx-focus-color: #1F4788;
+}
+
+/*
+ * Combo Boxes
+ */
+.jfx-combo-box {
+    -jfx-focus-color: #1F4788;
+    -jfx-unfocus-color: #89C4F4;
 }
 
 /*
@@ -82,6 +106,10 @@ Base Styles
     -fx-background-insets: 0, 1, 1;
     -fx-font-family: Roboto;
     -jfx-button-type: RAISED;
+}
+
+.jfx-button {
+    -jfx-button-type: FLAT;
 }
 
 .button:pressed {
@@ -109,7 +137,6 @@ Base Styles
 Table View
  */
 .table-view {
-    -fx-background-color: transparent;
     -fx-border-color: #515A5A;
 }
 
