@@ -8,19 +8,19 @@
 Colors
  */
 .main-background {
-    -fx-background-color: #FFFFFF;
+    -fx-background-color: #FFFAF0;
 }
 
 .primary-color {
-    -fx-background-color: #4B77BE;
+    -fx-background-color: #B6D9C6;
 }
 
 .primary-color-dark {
-    -fx-background-color: #1F4788;
+    -fx-background-color: #89A395;
 }
 
 .primary-color-light {
-    -fx-background-color: #89C4F4;
+    -fx-background-color: #C8E3D4;
 }
 
 .secondary-color {
@@ -35,6 +35,27 @@ Colors
     -fx-background-color: #DFC9A5;
 }
 
+.grid-layout-margin {
+    -fx-background-color: #ADFF2F;
+    -fx-opacity: .3;
+    -fx-pref-height: 1080;
+    -fx-pref-width: 57.5;
+}
+
+.grid-layout-column {
+    -fx-background-color: #FFA07A;
+    -fx-opacity: .3;
+    -fx-pref-height: 1080;
+    -fx-pref-width: 75;
+}
+
+.grid-layout-gutter {
+    -fx-background-color: #87CEFA;
+    -fx-opacity: .3;
+    -fx-pref-height: 1080;
+    -fx-pref-width: 20;
+}
+
 
 /*
 Base Styles
@@ -44,13 +65,31 @@ Base Styles
     -fx-font-family: "Roboto Light";
 }
 
-.medium-label-text{
+.medium-label-text {
     -fx-font-size: 18pt;
     -fx-font-family: "Roboto Light";
 }
-.small-label-text{
+
+.small-label-text {
     -fx-font-size: 14pt;
     -fx-font-family: "Roboto Light";
+}
+
+
+/*
+1920
+ */
+.tab {
+    -fx-background-color: #BE924B;
+}
+
+
+.tab-header-background {
+    -fx-background-color: #BE924B;
+}
+
+.jfx-tab-pane .tab-selected-line {
+    -fx-background-color: #DFC9A5;
 }
 
 /*
@@ -99,7 +138,7 @@ Base Styles
 /*
  * Buttons
  */
-.button {
+.button-standard {
     -fx-background-color: #909090,
     #FFFFFF;
     -fx-background-radius: 4;
@@ -108,22 +147,39 @@ Base Styles
     -jfx-button-type: RAISED;
 }
 
+.plus-button {
+    -fx-shape: "M0,-1 V1 M-1,0 H1";
+    -fx-background-color: gray;
+}
+
+.delete-button {
+    -fx-pref-width: 33;
+    -fx-pref-height: 35;
+    -fx-shape: "m -191,-172.1 h -18 c -2.4,0 -4.5,-2 -4.7,-4.4 l -2.83125,-34.67299 c 0,0 1.99778,-0.0284 3,-0.027 9.05752,0.013 18.03623,-0.0183 27.0625,-0.0312 1.00222,-0.001 2.90625,0.075 2.90625,0.075 L -186.3,-176.5 c -0.2,2.5 -2.3,4.4 -4.7,4.4 m -12,-47.9 c -2.4,0 -4.40039,2.00039 -4.40039,4.40039 l 0.0117,1.50391 h 2.76172 c 0,0 -0.35534,-0.58003 0.0273,-1.50391 0.28864,-0.69683 0.69961,-1.59961 1.59961,-1.59961 h 6 c 0.9,0 1.31097,0.90278 1.59961,1.59961 0.38268,0.92388 0.0352,1.5 0.0352,1.5 h 2.76563 v -1.5 C -192.59961,-217.99961 -194.6,-220 -197,-220 Z m -16.5,5.9 h 39 v 3 h -39 z";
+    -fx-background-color: gray;
+}
+
+.delete-button:hover {
+
+    -fx-background-color: #DC143C;
+}
+
 .jfx-button {
     -jfx-button-type: FLAT;
 }
 
-.button:pressed {
+.button-standard:pressed {
     -fx-background-color: #445463;
     -fx-text-fill: white;
 }
 
-.button:hover {
+.button-standard:hover {
     -fx-background-color: #909090,
     #9fafc0;
     -fx-text-fill: white;
 }
 
-.button:hover:pressed {
+.button-standard:hover:pressed {
     -fx-background-color: #445463;
     -fx-text-fill: white;
 }
@@ -140,24 +196,5 @@ Table View
     -fx-border-color: #515A5A;
 }
 
-/*
-Menu/Menu Bar
- */
-
-.menu-bar {
-    -fx-background-color: #99A3A4;
-}
-
-.jfx-hamburger-icon {
-    -fx-spacing: 5;
-    -fx-cursor: hand;
-}
-
-.jfx-hamburger-icon StackPane {
-    -fx-pref-width: 40px;
-    -fx-pref-height: 7px;
-    -fx-background-color: #D63333;
-    -fx-background-radius: 5px;
-}
 
    

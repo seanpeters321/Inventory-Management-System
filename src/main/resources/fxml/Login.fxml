@@ -8,42 +8,53 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" stylesheets="@../stylesheets/StyleSheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.controllers.LoginController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="400.0" prefWidth="500.0"
+            stylesheets="@../stylesheets/StyleSheet.css" xmlns="http://javafx.com/javafx/10.0.2-internal"
+            fx:controller="main.java.controllers.LoginController">
     <children>
-        <Pane layoutX="-3.0" prefHeight="400.0" prefWidth="228.0" styleClass="primary-color-light" stylesheets="@../stylesheets/StyleSheet.css">
+        <Pane layoutX="-3.0" prefHeight="400.0" prefWidth="228.0" styleClass="primary-color-light"
+              stylesheets="@../stylesheets/StyleSheet.css">
             <effect>
-                <DropShadow />
+                <DropShadow/>
             </effect>
         </Pane>
-        <AnchorPane prefHeight="400.0" prefWidth="202.0" styleClass="primary-color">
+        <AnchorPane prefHeight="400.0" prefWidth="202.0" styleClass="secondary-color">
             <children>
                 <Label layoutX="34.0" layoutY="43.0" styleClass="logo-font-big" text="Metals Co.">
                     <font>
-                        <Font name="Berlin Sans FB" size="36.0" />
+                        <Font name="Berlin Sans FB" size="36.0"/>
                     </font>
                 </Label>
                 <Label layoutX="9.0" layoutY="82.0" text="Quality Metals at Affordable Prices">
                     <font>
-                        <Font name="Berlin Sans FB" size="12.0" />
+                        <Font name="Berlin Sans FB" size="12.0"/>
                     </font>
                 </Label>
             </children>
             <effect>
-                <DropShadow />
+                <DropShadow/>
             </effect>
         </AnchorPane>
-        <AnchorPane layoutX="225.0" prefHeight="400.0" prefWidth="275.0" stylesheets="@../stylesheets/StyleSheet.css">
+        <AnchorPane layoutX="225.0" prefHeight="400.0" prefWidth="275.0" styleClass="primary-color-light"
+                    stylesheets="@../stylesheets/StyleSheet.css">
             <children>
-                <Label layoutX="14.0" layoutY="40.0" styleClass="label-login" stylesheets="@../stylesheets/StyleSheet.css" text="User Login" textFill="#5b2f2f">
+                <Label layoutX="14.0" layoutY="40.0" styleClass="label-login"
+                       stylesheets="@../stylesheets/StyleSheet.css" text="User Login" textFill="#5b2f2f">
                     <font>
-                        <Font size="18.0" />
+                        <Font size="18.0"/>
                     </font>
                 </Label>
-                <Label fx:id="statusLabel" layoutX="14.0" layoutY="154.0" styleClass="label-login-alert" stylesheets="@../stylesheets/StyleSheet.css" />
-                <JFXTextField fx:id="txtUser" focusColor="#445463" labelFloat="true" layoutX="14.0" layoutY="88.0" prefHeight="25.0" prefWidth="149.0" promptText="Employee ID" styleClass="text-field" stylesheets="@../stylesheets/StyleSheet.css" unFocusColor="BLACK" />
-                <JFXPasswordField fx:id="txtPass" focusColor="#445463" labelFloat="true" layoutX="14.0" layoutY="129.0" prefHeight="25.0" prefWidth="149.0" promptText="Password" stylesheets="@../stylesheets/StyleSheet.css" />
-                <JFXButton fx:id="loginBtn" layoutX="14.0" layoutY="171.0" onAction="#Login" styleClass="button" stylesheets="@../stylesheets/StyleSheet.css" text="Login" />
+                <Label fx:id="statusLabel" layoutX="14.0" layoutY="154.0" styleClass="label-login-alert"
+                       stylesheets="@../stylesheets/StyleSheet.css"/>
+                <JFXTextField fx:id="txtUser" focusColor="#445463" labelFloat="true" layoutX="14.0" layoutY="88.0"
+                              prefHeight="25.0" prefWidth="149.0" promptText="Employee ID" styleClass="text-field"
+                              stylesheets="@../stylesheets/StyleSheet.css" unFocusColor="BLACK"/>
+                <JFXPasswordField fx:id="txtPass" focusColor="#445463" labelFloat="true" layoutX="14.0" layoutY="129.0"
+                                  prefHeight="25.0" prefWidth="149.0" promptText="Password"
+                                  stylesheets="@../stylesheets/StyleSheet.css"/>
+                <JFXButton fx:id="loginBtn" layoutX="14.0" layoutY="171.0" onAction="#Login"
+                           styleClass="button-standard" stylesheets="@../stylesheets/StyleSheet.css" text="Login"/>
             </children>
         </AnchorPane>
     </children>

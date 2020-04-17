@@ -9,15 +9,27 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 
+/**
+ * <b>Class that searches for files</b>
+ *
+ * @author Sean Peters
+ */
 public class FileSearcher {
-    public static void recursiveFind(Path path, Consumer<Path> c) {
+
+    /**
+     * Searches through a given directory and outputs all files inside.
+     *
+     * @param path     directory to search in
+     * @param consumer where the filepath goes
+     */
+    public static void fileFinder(Path path, Consumer<Path> consumer) {
         try (DirectoryStream<Path> newDirectoryStream = Files.newDirectoryStream(path)) {
             StreamSupport.stream(newDirectoryStream.spliterator(), false)
                     .peek(p -> {
-                        c.accept(p);
+                        consumer.accept(p);
                         if (p.toFile()
                                 .isDirectory()) {
-                            recursiveFind(p, c);
+                            fileFinder(p, consumer);
                         }
                     })
                     .collect(Collectors.toList());

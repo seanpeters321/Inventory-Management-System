@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="763.0" prefWidth="1281.0" styleClass="main-background"
+            stylesheets="@../stylesheets/StyleSheet.css" xmlns="http://javafx.com/javafx/11.0.1"
+            fx:controller="main.java.controllers.InventorySheetController">
+    <children>
+        <AnchorPane layoutX="1008.0" layoutY="-1.0" prefHeight="763.0" prefWidth="274.0" styleClass="primary-color"
+                    stylesheets="@../stylesheets/StyleSheet.css">
+            <effect>
+                <DropShadow/>
+            </effect>
+            <children>
+                <AnchorPane layoutX="14.0" layoutY="110.0" prefHeight="272.0" prefWidth="256.0"
+                            styleClass="primary-color">
+                    <children>
+                        <JFXComboBox fx:id="metalBox" labelFloat="true" layoutX="15.0" layoutY="21.0" prefHeight="25.0"
+                                     prefWidth="135.0" promptText="Metal" stylesheets="@../stylesheets/StyleSheet.css"/>
+                        <JFXComboBox fx:id="typeBox" labelFloat="true" layoutX="14.0" layoutY="62.0" promptText="Type"/>
+                        <JFXTextField fx:id="dimensions" labelFloat="true" layoutX="14.0" layoutY="99.0"
+                                      promptText="Dimensions" stylesheets="@../stylesheets/StyleSheet.css"/>
+                        <JFXTextField fx:id="quantity" labelFloat="true" layoutX="14.0" layoutY="137.0"
+                                      prefHeight="25.0" prefWidth="48.0" promptText="Quantity"/>
+                        <JFXTextField fx:id="price" labelFloat="true" layoutX="72.0" layoutY="137.0" prefHeight="25.0"
+                                      prefWidth="77.0" promptText="Price"/>
+                        <JFXButton fx:id="addStock" layoutX="21.0" layoutY="179.0" onAction="#genStock"
+                                   styleClass="button-standard" text="Add Stock"/>
+                    </children>
+                </AnchorPane>
+                <Label layoutX="14.0" layoutY="75.0" styleClass="medium-label-text" text="Create New Stock"/>
+            </children>
+        </AnchorPane>
+        <JFXButton fx:id="plusButton" layoutX="412.0" layoutY="48.0" onAction="#setAddStock"
+                   styleClass="button-standard" text="+"/>
+        <JFXButton fx:id="minusButton" layoutX="564.0" layoutY="48.0" onAction="#setSubStock"
+                   styleClass="button-standard" text="-"/>
+        <Label fx:id="errorLabel" layoutX="437.0" layoutY="52.0" prefHeight="17.0" prefWidth="127.0"
+               styleClass="label-login-alert" textAlignment="CENTER"/>
+        <JFXButton fx:id="deleteButton" layoutX="927.0" layoutY="38.0" onAction="#deleteStock"
+                   styleClass="delete-button"/>
+        <TableView fx:id="tableView" layoutX="35.0" layoutY="122.0" prefHeight="628.0" prefWidth="930.0"
+                   stylesheets="@../stylesheets/StyleSheet.css" AnchorPane.bottomAnchor="58.0">
+            <columns>
+                <TableColumn fx:id="idColumn" prefWidth="100.0" text="ID"/>
+                <TableColumn fx:id="nameColumn" onEditCommit="#changeNameCellEvent" prefWidth="100.0" text="Name"/>
+                <TableColumn fx:id="quantityColumn" onEditCommit="#changeQuantityCellEvent" prefWidth="89.0"
+                             text="Quantity"/>
+                <TableColumn fx:id="dimColumn" prefWidth="75.0" text="Dimensions"/>
+                <TableColumn fx:id="priceColumn" prefWidth="100.0" text="Price"/>
+            </columns>
+            <cursor>
+                <Cursor fx:constant="DEFAULT"/>
+            </cursor>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
+            <tooltip>
+                <Tooltip text="Selected Stock to Change Quantity"/>
+            </tooltip>
+        </TableView>
+        <Pane layoutY="1033.0" prefHeight="47.0" prefWidth="1920.0" styleClass="secondary-color-dark">
+            <effect>
+                <DropShadow/>
+            </effect>
+        </Pane>
+    </children>
+</AnchorPane>

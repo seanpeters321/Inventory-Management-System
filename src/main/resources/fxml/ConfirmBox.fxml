@@ -4,20 +4,23 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
-
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" styleClass="secondary-color" stylesheets="@../stylesheets/StyleSheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-fx:controller="main.java.controllers.ConfirmBoxController">
-   <children>
-      <JFXButton layoutX="14.0" layoutY="77.0" onAction="#confirm" prefHeight="72.0" prefWidth="115.0" text="Yes" />
-      <JFXButton layoutX="271.0" layoutY="77.0" onAction="#deny" prefHeight="72.0" prefWidth="115.0" text="No" />
-      <AnchorPane prefHeight="47.0" prefWidth="400.0" styleClass="secondary-color-light">
-         <children>
-            <Label layoutX="43.0" prefHeight="47.0" prefWidth="314.0" styleClass="small-label-text" text="Are You Sure You Want to Delete This" textAlignment="CENTER" />
-         </children>
-         <effect>
-            <DropShadow />
-         </effect>
-      </AnchorPane>
-   </children>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="159.0" prefWidth="359.0" styleClass="primary-color"
+            stylesheets="@../stylesheets/StyleSheet.css" xmlns="http://javafx.com/javafx/11.0.1"
+            fx:controller="main.java.controllers.ConfirmBoxController">
+    <children>
+        <JFXButton layoutX="14.0" layoutY="61.0" onAction="#confirm" prefHeight="72.0" prefWidth="115.0"
+                   styleClass="button-standard" text="Yes"/>
+        <JFXButton layoutX="230.0" layoutY="61.0" onAction="#deny" prefHeight="72.0" prefWidth="115.0"
+                   styleClass="button-standard" text="No"/>
+        <AnchorPane prefHeight="47.0" prefWidth="359.0" styleClass="primary-color-light">
+            <effect>
+                <DropShadow/>
+            </effect>
+            <children>
+                <Label layoutX="19.0" prefHeight="47.0" prefWidth="321.0" styleClass="small-label-text"
+                       text="Are You Sure You Want to Delete This" textAlignment="CENTER"/>
+            </children>
+        </AnchorPane>
+    </children>
 </AnchorPane>

@@ -1,3 +1,6 @@
 320122308-Steel-Bar-3x10x3-0-10
-330896429-Copper-Block-4x5x7-18-11
-530578825-StainlessSteel-Block-3x4x5-1-32
+440696567-Steel-Shaft-4x4x4-32-23
+420282815-Steel-Sheet-4x3x3-2-22
+340927521-Copper-Shaft-3x4x5-2-32
+340428256-Copper-Shaft-5x6x6-32-32
+230150513-Bronze-Block-6x6x6-0-65

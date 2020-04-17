@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="763.0" prefWidth="1281.0" xmlns="http://javafx.com/javafx/11.0.1"
+            fx:controller="main.java.controllers.MainController">
+    <children>
+        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                    prefHeight="763.0" prefWidth="1281.0" stylesheets="@../stylesheets/StyleSheet.css"
+                    AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                    AnchorPane.topAnchor="0.0">
+            <children>
+                <JFXTabPane fx:id="tabPane" prefHeight="763.0" prefWidth="1281.0"
+                            stylesheets="@../stylesheets/StyleSheet.css" AnchorPane.bottomAnchor="0.0"
+                            AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <Tab fx:id="orderTab" text="Orders">
+                        <fx:include prefHeight="763" prefWidth="1281" source="OrderPage.fxml"/>
+                    </Tab>
+                    <Tab fx:id="inventoryTab" text="Inventory">
+                        <fx:include prefHeight="763" prefWidth="1281" source="InventorySheet.fxml"/>
+                    </Tab>
+                    <Tab fx:id="usersTab" text="Users">
+                        <fx:include prefHeight="763" prefWidth="1281" source="UsersPage.fxml"/>
+                    </Tab>
+                </JFXTabPane>
+            </children>
+        </AnchorPane>
+        <JFXButton layoutX="1210.0" layoutY="6.0" onAction="#logout" styleClass="button-standard"
+                   stylesheets="@../stylesheets/StyleSheet.css" text="Logout"/>
+    </children>
+</AnchorPane>

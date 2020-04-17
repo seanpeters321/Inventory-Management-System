@@ -8,7 +8,9 @@ import java.util.Random;
 
 
 /**
- * Represents a stock in inventory which is identified with an ID. This ID represents the important characteristics of the Stock object so that the object can be reference in the inventory.txt file.
+ * <b>Represents a stock in the inventory text document</b>
+ * <p>
+ * Stores the quantity, metal, type, price and ID of the stock.
  *
  * @author Sean Peters
  */
@@ -18,12 +20,6 @@ public class Stock {
     private SimpleDoubleProperty price, totalPrice;
 
 
-    /**
-     * @param ID
-     * @param name
-     * @param quantity
-     * @param price
-     */
     public Stock(String ID, String name, String quantity, double price, String dimensions) {
         this.name = new SimpleStringProperty(name);
         this.ID = new SimpleStringProperty(ID);
@@ -65,7 +61,7 @@ public class Stock {
         this.totalPrice = new SimpleDoubleProperty(price);
     }
 
-    public Stock(String metal, String type, String dimensions, String quantity, double price){
+    public Stock(String metal, String type, String dimensions, String quantity, double price) {
         this.name = new SimpleStringProperty(metal);
         this.type = new SimpleStringProperty(type);
         this.dimensions = new SimpleStringProperty(dimensions);
@@ -138,10 +134,12 @@ public class Stock {
         return price.get();
     }
 
-    public String getType(){return type.get();}
-
     public void setPrice(double price) {
         this.price.set(price);
+    }
+
+    public String getType() {
+        return type.get();
     }
 
     public SimpleDoubleProperty priceProperty() {
@@ -175,11 +173,6 @@ public class Stock {
         return stock;
     }
 
-    /**
-     * Creates a string based of of stock.
-     *
-     * @return
-     */
     public String toString() {
         String stock = "";
         stock = ID.get() + " " + name.get() + " " + type.get() + " " + dimensions.get() + " " + quantity.get() + " " + price.intValue();
@@ -188,7 +181,8 @@ public class Stock {
 
 
     /**
-     * Generates ID based off of metal type, length, width, and height.
+     * Generates ID based off of metal and type.
+     * Creates a random number to add on to the end.
      * Used to reference inventory.txt and get price of item and its quantity in stock.
      */
     public String genID(String name, String type) {

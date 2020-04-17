@@ -8,7 +8,19 @@ import javafx.scene.control.Label;
 import javafx.util.Duration;
 
 
+/**
+ * <b>Class that handles all animations in the program</b>
+ *
+ * @author Sean Peters
+ */
 public class Animations {
+
+    /**
+     * Error message animation.
+     *
+     * @param text
+     * @param label
+     */
     public void errorMessage(String text, Label label) {
         label.setOpacity(0);
         label.setText(text);

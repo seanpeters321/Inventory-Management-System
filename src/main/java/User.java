@@ -3,6 +3,18 @@ package main.java;
 import javafx.beans.property.SimpleStringProperty;
 
 
+/**
+ * <b>Represents the logged in user</b>
+ * <p>
+ * Stores the username, password and type of the user.
+ * <p>
+ * Users can have two types,
+ * <i>Administrators</i> and <i>Employees</i>
+ * <p>
+ * Depending on the type of the user, certain functions may be restricted
+ *
+ * @author Sean Peters
+ */
 public class User {
     public boolean isAdmin = false, isEmployee = false;
     private SimpleStringProperty username, password, type;

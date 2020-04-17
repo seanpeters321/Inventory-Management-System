@@ -3,9 +3,19 @@ package main.java;
 import javafx.scene.control.TableColumn;
 
 
+/**
+ * <b>Class that formats Strings</b>
+ *
+ * @author Sean Peters
+ */
 public class Formatter implements Formats {
     public String newRow, oldRow;
 
+    /**
+     * Formats a String for the Inventory page
+     *
+     * @param editedCell Cell that is being edited
+     */
     @Override
     public void formatStockFromCellEdit(TableColumn.CellEditEvent editedCell) {
         String oldValue = "-" + editedCell.getOldValue().toString().replace(" ", "-") + "-";
@@ -16,10 +26,12 @@ public class Formatter implements Formats {
         this.oldRow = oldRow;
     }
 
-    public void formatStockForConfirmOrder(String item) {
-
-    }
-
+    /**
+     * Formats a String for the Order Page
+     *
+     * @param oldString String to formatted
+     * @return formatted String
+     */
     public String stockFormatter(String oldString) {
         String newString;
         String[] output = oldString.split(" ");
@@ -28,12 +40,3 @@ public class Formatter implements Formats {
         return newString;
     }
 }
-
-/*
-0: ID
-1: Metal
-2: Type
-3: Dimensions
-4: Quantity
-5: Price
- */

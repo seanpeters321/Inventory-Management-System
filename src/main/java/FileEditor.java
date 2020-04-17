@@ -8,11 +8,18 @@ import java.io.*;
 import java.util.Scanner;
 
 
+/**
+ * <b>Class that handles the manipulation of text documents</b>
+ *
+ * @author Sean Peters
+ */
 public class FileEditor {
     // Filepath's
-    String accounts = References.ACCOUNTS.getFilepath();
+    final String ACCOUNTS = References.ACCOUNTS.getFilepath();
 
     /**
+     * Reads the file with the given filepath
+     *
      * @param filePath
      * @throws IOException
      */
@@ -25,10 +32,19 @@ public class FileEditor {
         }
     }
 
-
+    /**
+     * Creates a User object based off the provided username and password.
+     * With the provided information, the accounts text document is searched for the provided user
+     * to confirm that the username and password match and exist.
+     *
+     * @param username the input username
+     * @param password the input password
+     * @return User object that stores the username, password and type of the confirmed account
+     * @throws FileNotFoundException
+     */
     public User userIdentifier(String username, String password) throws FileNotFoundException {
         User account = null;
-        try (Scanner scan = new Scanner(new FileReader(accounts))) {
+        try (Scanner scan = new Scanner(new FileReader(ACCOUNTS))) {
             String user, name = null, pass = null, type = null;
             while (scan.hasNextLine()) {
                 user = scan.nextLine();
@@ -47,7 +63,6 @@ public class FileEditor {
                     }
                 }
             }
-
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Invalid Username and/or Password");
             //e.printStackTrace();
@@ -57,13 +72,17 @@ public class FileEditor {
         return account;
     }
 
+    /**
+     * Used to modify a text document by replacing the oldString with the newString.
+     *
+     * @param filePath  Filepath of the text document
+     * @param oldString The String to be replaced
+     * @param newString The String that replaces oldString
+     */
     public void modifyFile(String filePath, String oldString, String newString) {
         File fileToBeModified = new File(filePath);
-
         String oldContent = "";
-
         BufferedReader reader = null;
-
         FileWriter writer = null;
 
         try {
@@ -73,43 +92,37 @@ public class FileEditor {
 
             while (line != null) {
                 oldContent = oldContent + line + System.lineSeparator();
-
                 line = reader.readLine();
             }
-
             String newContent = oldContent.replaceAll(oldString, newString);
-
             writer = new FileWriter(fileToBeModified);
-
             writer.write(newContent);
-
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
             try {
                 reader.close();
-
                 writer.close();
-
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
 
+    /**
+     * Adds a new line to a text document with the newString
+     *
+     * @param filePath  Filepath of the text document
+     * @param newString String to be added to the text document
+     */
     public void addToFile(String filePath, String newString) {
         File fileToBeModified = new File(filePath);
-
         String oldContent = "";
-
         BufferedReader reader = null;
-
         FileWriter writer = null;
 
         try {
             reader = new BufferedReader(new FileReader(fileToBeModified));
-
             String line = reader.readLine();
 
             while (line != null) {
@@ -117,8 +130,6 @@ public class FileEditor {
 
                 line = reader.readLine();
             }
-
-
             String newContent = oldContent + newString;
 
             writer = new FileWriter(fileToBeModified);
@@ -129,7 +140,6 @@ public class FileEditor {
         } finally {
             try {
                 reader.close();
-
                 writer.close();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -137,38 +147,34 @@ public class FileEditor {
         }
     }
 
+    /**
+     * Deletes all blank lines in a text document
+     *
+     * @param filePath Filepath of the text document
+     */
     public void clearEmptyLines(String filePath) {
         File fileToBeModified = new File(filePath);
-
         String oldContent = "";
-
         BufferedReader reader = null;
-
         FileWriter writer = null;
 
         try {
             reader = new BufferedReader(new FileReader(fileToBeModified));
-
             String line = reader.readLine();
-
             while (line != null) {
                 if (line.length() != 0) {
                     oldContent = oldContent + line + System.lineSeparator();
                 }
                 line = reader.readLine();
             }
-
             String newContent = oldContent;
-
             writer = new FileWriter(fileToBeModified);
-
             writer.write(newContent);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
             try {
                 reader.close();
-
                 writer.close();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -176,6 +182,12 @@ public class FileEditor {
         }
     }
 
+    /**
+     * Scans through the inventory text document and converts all lines into Stock objects
+     *
+     * @return a Stock ObservableList which reflects the inventory text document
+     * @throws FileNotFoundException
+     */
     public ObservableList<Stock> getInventory() throws FileNotFoundException {
         ObservableList<Stock> inventory = FXCollections.observableArrayList();
         Scanner scan = new Scanner(new FileReader(References.INVENTORY.getFilepath()));
@@ -195,6 +207,13 @@ public class FileEditor {
         return inventory;
     }
 
+    /**
+     * Searches through the inventory text document to find the stock of the given ID
+     *
+     * @param id The ID of the Stock
+     * @return a Stock item of the given ID
+     * @throws FileNotFoundException
+     */
     public Stock getStock(String id) throws FileNotFoundException {
         Stock item = null;
         Scanner scan = new Scanner(new FileReader(References.INVENTORY.getFilepath()));

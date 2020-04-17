@@ -9,13 +9,18 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 
-public enum References implements Navigator {
+/**
+ * <b>Enum that stores all filepath's</b>
+ * <p>
+ * Contains methods that allow for the user to traverse between requested pages.
+ *
+ * @author Sean Peters
+ */
+public enum References {
     //fxml filepath's
-    MAIN_ADMIN("./main/resources/fxml/MainAdmin.fxml", "Main (Admin)"),
-    MAIN_EMPLOYEE("./main/resources/fxml/MainEmployee.fxml", "Main (Employee)"),
+    MAIN("main/resources/fxml/MainPage.fxml", "Main"),
     LOGIN("./main/resources/fxml/Login.fxml", "Login"),
-    INVENTORY_SHEET_ADMIN("./main/resources/fxml/InventorySheetAdmin.fxml", "Inventory Sheet (Admin)"),
-    INVENTORY_SHEET_EMPLOYEE("./main/resources/fxml/InventorySheetEmployee.fxml", "Inventory Sheet (Employee)"),
+    INVENTORY_SHEET("main/resources/fxml/InventorySheet.fxml", "Inventory Sheet"),
     ORDERS_PAGE("./main/resources/fxml/OrderPage.fxml", "Orders"),
     USERS_PAGE("./main/resources/fxml/UsersPage.fxml", "Users"),
     CONFIRM_ORDER_PAGE("./main/resources/fxml/ConfirmOrder.fxml", "Confirm Order"),
@@ -23,8 +28,7 @@ public enum References implements Navigator {
 
     //txt filepath's
     ACCOUNTS("./src/main/resources/txt/accounts.txt", "accounts"),
-    INVENTORY("./src/main/resources/txt/inventory.txt", "inventory"),
-    ORDER_HISTORY("./src/main/resources/txt/orderHistory", "order history");
+    INVENTORY("./src/main/resources/txt/inventory.txt", "inventory");
 
     private final String filepath;
     private final String title;
@@ -38,24 +42,33 @@ public enum References implements Navigator {
         return filepath;
     }
 
+
+    // Methods
+
+    /**
+     * Changes the scene to the requested fxml file.
+     *
+     * @throws IOException
+     */
     public void goTo() throws IOException {
         Parent page = FXMLLoader.load(getClass().getClassLoader().getResource(filepath));
-        Scene scene = new Scene(page);
+        Scene scene;
         Stage window = Main.primaryStage;
-        window.setScene(scene);
-        window.setMinWidth(1920);
-        window.setMinHeight(1080);
-        window.setMaximized(true);
         if (filepath == LOGIN.filepath) {
-            window.setMaximized(true);
-            window.setMaxWidth(500);
-            window.setMaxHeight(400);
-            window.centerOnScreen();
+            scene = new Scene(page, 500, 400);
+        } else {
+            scene = new Scene(page, 1281, 793);
         }
-
+        window.setScene(scene);
+        window.centerOnScreen();
         window.show();
     }
 
+    /**
+     * Creates a new pop-up window for ConfirmBox and ConfirmOrder pages.
+     *
+     * @throws IOException
+     */
     public void popOut() throws IOException {
         Parent page = FXMLLoader.load(getClass().getClassLoader().getResource(filepath));
         Scene scene = new Scene(page);
@@ -66,12 +79,5 @@ public enum References implements Navigator {
         window.centerOnScreen();
         window.setScene(scene);
         window.showAndWait();
-    }
-
-
-    public void refresh() throws IOException {
-        Parent page = FXMLLoader.load(getClass().getClassLoader().getResource(filepath));
-        Scene scene = new Scene(page);
-        Main.primaryStage.setScene(scene);
     }
 }

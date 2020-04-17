@@ -1,81 +1,59 @@
 package main.java.controllers;
 
-import com.jfoenix.controls.JFXButton;
-import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import main.java.FileSearcher;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import main.java.References;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
 
 /**
- * Manages MainAdmin.fxml
+ * <b>Manages Main.fxml</b>
+ * <p>
+ * Displays the Order, Inventory, and Users pages on a TabPane.
+ * Allows for the user to logout of the account, which returns them to the Login page.
  *
- * @author Sean
+ * <b>If the user is an employee, the Users page will be hidden</b>
+ *
+ * @author Sean Peters
  */
 public class MainController extends LoginController implements Initializable {
     // Scene FX:ID's
     @FXML
-    private JFXButton orderButton;
+    protected TabPane tabPane;
+    @FXML
+    protected Tab orderTab, inventoryTab, usersTab;
 
+    /**
+     * <b>Executes when Main.fxml is initialized</b>
+     * <p>
+     * Disables and hides the User tab if the current user is an Employee.
+     *
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        if (user.isEmployee) {
+            usersTab.setDisable(true);
+            usersTab.setText("");
+        }
     }
 
     /**
-     * Changes scene to Login.fxml
+     * <b>Handles the logout event</b>
+     * <p>
+     * Returns the user to the login page.
      *
      * @param event
      * @throws IOException
      */
-    public void goBack(ActionEvent event) throws IOException {
+    public void logout(ActionEvent event) throws IOException {
         References.LOGIN.goTo();
     }
-
-    /**
-     * Changes scene to InventorySheetEmployee.fxml
-     *
-     * @param event
-     * @throws IOException
-     */
-    public void goToInventorySheet(ActionEvent event) throws IOException {
-        if (user.isAdmin)
-            References.INVENTORY_SHEET_ADMIN.goTo();
-        else if (user.isEmployee)
-            References.INVENTORY_SHEET_EMPLOYEE.goTo();
-    }
-
-    /**
-     * Changes scene to OrderPage.fxml
-     *
-     * @param event
-     * @throws IOException
-     */
-    public void goToOrderPage(ActionEvent event) throws IOException {
-        References.ORDERS_PAGE.goTo();
-    }
-
-    public void goToUsersPage(ActionEvent event) throws IOException {
-        References.USERS_PAGE.goTo();
-    }
-
-    /**
-     * Close handler
-     *
-     * @param event
-     */
-    public void closeHandler(ActionEvent event) {
-        Platform.exit();
-    }
-
-
 }

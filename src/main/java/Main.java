@@ -11,33 +11,37 @@ import java.io.IOException;
 
 
 /**
- * The main class of this program
+ * <b>The main class of this program</b>
  *
  * @author Sean Peters
- * @version 1.0.0, 02/23/2020
+ * @version 1.7.3, 04/16/2020
  */
 public class Main extends Application {
     public static Animations animations = new Animations();
     // Inherited Variables
     public static User user;
     public static Stage primaryStage;
+    public static boolean decision;
     // Filepath's
     public final String INVENTORY = References.INVENTORY.getFilepath();
     public final String ACCOUNTS = References.ACCOUNTS.getFilepath();
-    public final String ORDER_HISTORY = References.ORDER_HISTORY.getFilepath();
-
-    public static boolean decision;
 
     /**
+     * <b>Launches the program</b>
+     *
      * @param args
      * @throws IOException
      */
     public static void main(String[] args) throws IOException {
-        FileEditor fileEditor = new FileEditor();
-        fileEditor.getInventory();
         launch(args);
     }
 
+    /**
+     * <b>Sets up the GUI</b>
+     *
+     * @param primaryStage
+     * @throws Exception
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         try {
@@ -52,9 +56,4 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
-
-    public void close(Stage window) {
-        window.close();
-    }
-
 }

@@ -7,9 +7,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.effect.BlurType;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.paint.Color;
 import main.java.FileEditor;
 import main.java.Main;
 import main.java.References;
@@ -21,7 +18,14 @@ import java.util.ResourceBundle;
 
 
 /**
- * Manages Login.fxml
+ * <b>Handles Login.fxml</b>
+ * <p>
+ * Prompts the user for a username and password.
+ * Based off of the user's input values,
+ * the user type will be determined.
+ * The User object will be stored on the Main class so that all classes can access the current user type.
+ * <p>
+ * After logging in the scene will change to the MainPage.
  *
  * @author Sean Peters
  */
@@ -37,20 +41,17 @@ public class LoginController extends Main implements Initializable {
     @FXML
     private JFXButton loginBtn;
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //Adds shadow effect to button
-        DropShadow dropShadow = new DropShadow();
-        dropShadow.setBlurType(BlurType.GAUSSIAN);
-        dropShadow.setColor(Color.ROSYBROWN);
-        dropShadow.setHeight(5);
-        dropShadow.setWidth(5);
-        dropShadow.setRadius(5);
     }
 
     /**
+     * <b>Handles the login event</b>
+     * <p>
      * Checks if the given username and password match an existing user and logs
-     * them into this system
+     * them into this system.
+     * A user object will be generated with the matched user and be stored in the Main class.
      *
      * @param event
      * @throws IOException
@@ -67,11 +68,11 @@ public class LoginController extends Main implements Initializable {
             if (user != null && user.isAdmin) {
                 this.user = user;
                 statusLabel.setText("Login Success");
-                References.MAIN_ADMIN.goTo();
+                References.MAIN.goTo();
             } else if (user != null && user.isEmployee) {
                 this.user = user;
                 statusLabel.setText("Login Success");
-                References.MAIN_EMPLOYEE.goTo();
+                References.MAIN.goTo();
             } else {
                 animations.errorMessage("Invalid Username and/or Password", statusLabel);
             }

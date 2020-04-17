@@ -26,6 +26,23 @@ import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 
+/**
+ * <b>Handles ConfirmOrder.fxml</b>
+ * <p>
+ * Disables interaction in primary window.
+ * <p>
+ * Displays a TableView which shows the user the items selected on the OrderPage.
+ * The quantityColumn is blank when initialized, and needs to be filled in before confirming the order.
+ * The priceColumn will change its values depending on the input value of the quantityColumn,
+ * this displays the total cost of the specific item in each row.
+ * <p>
+ * Underneath the TableView, the total cost of all items is displayed.
+ * It is responsive and will change if the quantityColumn is edited.
+ * <p>
+ * Pressing the Confirm Order button will close the window and allow for interaction in primary window.
+ *
+ * @author Sean Peters
+ */
 public class ConfirmOrderController extends OrderPageController implements Initializable {
     @FXML
     private TableView<Stock> confirmView;
@@ -42,9 +59,14 @@ public class ConfirmOrderController extends OrderPageController implements Initi
     @FXML
     private Label priceLabel, errorLabel;
 
-    public ConfirmOrderController() throws FileNotFoundException {
-    }
-
+    /**
+     * <b>Executes when ConfirmOrder.fxml is initialized</b>
+     * <p>
+     * Populates the TableView confirmView and Label priceLabel (The generated number assumes each item has quantity of one).
+     *
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         double totalPrice = 0;
@@ -78,6 +100,16 @@ public class ConfirmOrderController extends OrderPageController implements Initi
         priceLabel.setText("$" + totalCost);
     }
 
+    /**
+     * <b>Handles the CellEditEvent of the quantityColumn</b>
+     * <p>
+     * When the user inputs and confirms a value in a cell in the quantityColumn, the new value will be reflected in the TableView
+     * and will be used to calculate the priceColumn values and priceLabel value.
+     * Does not allow the user to input a value below zero or above the in stock amount (value in the inStockColumn)
+     *
+     * @param editedCell
+     * @throws IOException
+     */
     public void changeQuantityCellEditEvent(TableColumn.CellEditEvent editedCell) throws IOException {
         FileEditor fileEditor = new FileEditor();
         int quantity = Integer.parseInt(editedCell.getNewValue().toString());
@@ -95,7 +127,6 @@ public class ConfirmOrderController extends OrderPageController implements Initi
             for (Stock item : stck) {
                 totalPrice += item.totalPriceProperty().get();
             }
-
             priceLabel.setText("$" + totalPrice);
         } else {
             Animations a = new Animations();
@@ -104,23 +135,29 @@ public class ConfirmOrderController extends OrderPageController implements Initi
         }
     }
 
-
+    /**
+     * <b>Handles the Confirm button</b>
+     * <p>
+     * Will generate an invoice based off the data in the TableView, which will be stored in the invoices folder in the outputs directory.
+     * Will subtract all stock confirmed from the inventory text document.
+     * Once executed, the window will close.
+     *
+     * @param event
+     * @throws IOException
+     */
     public void confirmOrder(ActionEvent event) throws IOException {
         Formatter formatter = new Formatter();
         FileEditor fileEditor = new FileEditor();
 
         //String verify, putData;
         ObservableList<Stock> items = confirmView.getItems();
-        ;
 
         //Gets local date and time
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         String dt = dtf.format(now);
 
-
         //Gets parameters from the order
-
         String name = this.name;
         String price = priceLabel.getText();
 
@@ -131,7 +168,6 @@ public class ConfirmOrderController extends OrderPageController implements Initi
 
 
         //Generate invoice
-
         writer.write("Invoice\t\t\tMetals Inc.\n\n" + "Client: " + name + "\nDate and Time: " + dt + "\n\nPurchased Items:");
         for (Stock item : items) {
             writer.newLine();
