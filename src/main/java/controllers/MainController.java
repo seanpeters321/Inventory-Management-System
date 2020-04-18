@@ -3,8 +3,11 @@ package main.java.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.stage.Stage;
+import main.java.Main;
 import main.java.References;
 
 import java.io.IOException;
@@ -28,6 +31,8 @@ public class MainController extends LoginController implements Initializable {
     protected TabPane tabPane;
     @FXML
     protected Tab orderTab, inventoryTab, usersTab;
+
+
 
     /**
      * <b>Executes when Main.fxml is initialized</b>
@@ -55,5 +60,9 @@ public class MainController extends LoginController implements Initializable {
      */
     public void logout(ActionEvent event) throws IOException {
         References.LOGIN.goTo();
+    }
+
+    public void gotoSettings(ActionEvent event) throws IOException {
+        References.SETTINGS.popOut();
     }
 }

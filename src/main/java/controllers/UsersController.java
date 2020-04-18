@@ -36,25 +36,27 @@ import java.util.Scanner;
 public class UsersController extends MainController implements Initializable {
     // Scene FX:ID's
     @FXML
-    JFXTextField username;
+    private JFXTextField username;
     @FXML
-    JFXTextField password;
+    private JFXTextField password;
     @FXML
-    JFXRadioButton employee;
+    private JFXRadioButton employee;
     @FXML
-    JFXRadioButton admin;
+    private JFXRadioButton admin;
     @FXML
-    JFXButton addUserButton;
+    private JFXButton addUserButton;
     @FXML
-    TableView<User> usersTable;
+    private TableView<User> usersTable;
     @FXML
-    TableColumn<User, String> namesCol;
+    private TableColumn<User, String> namesCol;
     @FXML
-    TableColumn<User, String> passwordsCol;
+    private TableColumn<User, String> passwordsCol;
     @FXML
-    TableColumn<User, String> typesCol;
+    private TableColumn<User, String> typesCol;
     @FXML
-    JFXButton deleteButton;
+    private JFXButton deleteButton;
+
+
 
     /**
      * <b>Executes when UsersPage.fxml is initialized</b>

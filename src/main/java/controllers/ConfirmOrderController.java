@@ -162,9 +162,10 @@ public class ConfirmOrderController extends OrderPageController implements Initi
         String price = priceLabel.getText();
 
         //Title for the Invoice; file name.
-        String title = "Invoice " + name;
+        String title = "Invoice " + name + ".txt";
 
         BufferedWriter writer = new BufferedWriter(new FileWriter(new File("./outputs/invoices", title)));
+
 
 
         //Generate invoice

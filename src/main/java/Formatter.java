@@ -8,7 +8,7 @@ import javafx.scene.control.TableColumn;
  *
  * @author Sean Peters
  */
-public class Formatter implements Formats {
+public class Formatter {
     public String newRow, oldRow;
 
     /**
@@ -16,7 +16,6 @@ public class Formatter implements Formats {
      *
      * @param editedCell Cell that is being edited
      */
-    @Override
     public void formatStockFromCellEdit(TableColumn.CellEditEvent editedCell) {
         String oldValue = "-" + editedCell.getOldValue().toString().replace(" ", "-") + "-";
         String newValue = "-" + editedCell.getNewValue().toString().replace(" ", "-") + "-";

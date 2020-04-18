@@ -1,8 +1,11 @@
 package main.java;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -25,10 +28,16 @@ public enum References {
     USERS_PAGE("./main/resources/fxml/UsersPage.fxml", "Users"),
     CONFIRM_ORDER_PAGE("./main/resources/fxml/ConfirmOrder.fxml", "Confirm Order"),
     CONFIRM_BOX("./main/resources/fxml/ConfirmBox.fxml", "Confirm Box"),
+    SETTINGS("./main/resources/fxml/Settings.fxml", "Settings"),
 
     //txt filepath's
     ACCOUNTS("./src/main/resources/txt/accounts.txt", "accounts"),
-    INVENTORY("./src/main/resources/txt/inventory.txt", "inventory");
+    INVENTORY("./src/main/resources/txt/inventory.txt", "inventory"),
+
+    //stylesheets
+    LIGHT_THEME("./main/resources/stylesheets/StyleSheet.css", "Light Theme"),
+    DARK_THEME("./main/resources/stylesheets/DarkTheme.css", "Dark Theme")
+    ;
 
     private final String filepath;
     private final String title;
@@ -59,6 +68,12 @@ public enum References {
         } else {
             scene = new Scene(page, 1281, 793);
         }
+        if(Main.isDark == true){
+            scene.getStylesheets().add(DARK_THEME.getFilepath());
+        }
+        else{
+            scene.getStylesheets().add(LIGHT_THEME.getFilepath());
+        }
         window.setScene(scene);
         window.centerOnScreen();
         window.show();
@@ -74,10 +89,39 @@ public enum References {
         Scene scene = new Scene(page);
         Stage window = new Stage();
         window.setResizable(false);
+        if(Main.isDark == true){
+            scene.getStylesheets().add(DARK_THEME.getFilepath());
+        }
+        else{
+            scene.getStylesheets().add(LIGHT_THEME.getFilepath());
+        }
         window.setTitle(title);
+        window.getIcons().add(new Image(getClass().getResourceAsStream("/main/resources/icons/Ingot 12.png")));
         window.initModality(Modality.APPLICATION_MODAL);
         window.centerOnScreen();
         window.setScene(scene);
         window.showAndWait();
+    }
+
+    /**
+     * Used to refresh a page contents.
+     * Used mainly to reflect changes to the style.
+     *
+     * @param event the event that occurs in the stage to be refreshed
+     * @throws IOException
+     */
+    public void refresh(ActionEvent event) throws IOException {
+        Parent page = FXMLLoader.load(getClass().getClassLoader().getResource(filepath));
+        Scene scene;
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(page);
+        if(Main.isDark == true){
+            scene.getStylesheets().add(DARK_THEME.getFilepath());
+        }
+        else{
+            scene.getStylesheets().add(LIGHT_THEME.getFilepath());
+        }
+        window.setScene(scene);
+        window.show();
     }
 }

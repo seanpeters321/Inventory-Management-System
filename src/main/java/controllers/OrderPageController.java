@@ -7,9 +7,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.Tab;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import main.java.*;
 
 import java.awt.*;
@@ -46,6 +50,8 @@ public class OrderPageController extends MainController implements Initializable
     @FXML
     private JFXListView<String> orderList, inventoryList, invoiceList;
 
+
+
     /**
      * Executes when OrderPage.fxml is initialized.
      *
@@ -72,7 +78,7 @@ public class OrderPageController extends MainController implements Initializable
     public void openInvoice(MouseEvent click) throws IOException {
         if (click.getClickCount() == 2) {
             String filepath = invoiceList.getSelectionModel().getSelectedItem();
-            filepath = "./outputs/invoices/" + filepath;
+            filepath = "./outputs/invoices/" + filepath + ".txt";
             File file = new File(filepath);
             Desktop.getDesktop().open(file);
         }
@@ -137,10 +143,12 @@ public class OrderPageController extends MainController implements Initializable
         fileSearcher.fileFinder(Paths.get("./outputs/invoices"), invoices::addAll);
         if (!invoices.isEmpty()) {
             for (Object invoice : invoices) {
-                File file = new File(invoice.toString());
+                File file = new File(invoice.toString().replaceAll(".txt",""));
                 files.add(file.getName());
             }
             invoiceList.setItems(files);
+        }else{
+            invoiceList.getItems().clear();
         }
         ObservableList<String> list = FXCollections.observableArrayList();
         ObservableList<Stock> inventory = FXCollections.observableArrayList();
@@ -159,5 +167,10 @@ public class OrderPageController extends MainController implements Initializable
             }
         }
         inventoryList.setItems(list);
+    }
+
+    public void clearOrder(ActionEvent event){
+        orderList.getItems().clear();
+
     }
 }

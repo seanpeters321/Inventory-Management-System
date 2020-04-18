@@ -70,6 +70,8 @@ public class InventorySheetController extends MainController implements Initiali
     @FXML
     private JFXTextField dimensions, quantity, price;
 
+
+
     /**
      * <b>Executes when InventorySheet is initialized.</b>
      * <p>
